@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "587748513216",
+    "project_id": "dbcc-trace",
+    "storage_bucket": "dbcc-trace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587748513216:android:34e1f33dd20facb3716425",
+        "android_client_info": {
+          "package_name": "com.example.dbcctrace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587748513216-rjeqao66i1sed58tjugj8526igam2lig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkvK6cwN1vzomptdSxnWoIdRCAGXJRYVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587748513216-rjeqao66i1sed58tjugj8526igam2lig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
