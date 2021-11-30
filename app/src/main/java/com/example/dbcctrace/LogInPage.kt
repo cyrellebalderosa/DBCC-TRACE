@@ -1,32 +1,39 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.dbcctrace
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
-import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dbcctrace.databinding.ActivityLogInPageBinding
-import com.facebook.AccessToken
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
+import com.facebook.*
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import java.lang.Exception
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
+import java.util.*
 
 
+
+@Suppress("DEPRECATION")
 class LogInPage : AppCompatActivity() {
 
 
@@ -52,12 +59,21 @@ class LogInPage : AppCompatActivity() {
 
     //Declare FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var fStore: FirebaseFirestore
+
     private var email = ""
     private var password = ""
 
     //Declare facebook auth
     lateinit var callbackManager: CallbackManager
     private val EMAIL = "email"
+
+
+
+    val  IS_ADMIN_KEY = "isAdmin"
+    val FCM_TOKEN = "fcmToken"
+
+
 
 
 
@@ -77,6 +93,7 @@ class LogInPage : AppCompatActivity() {
 
         //initialize firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
+        fStore = FirebaseFirestore.getInstance()
         CheckUser()
 
         //configure actionbar
@@ -110,7 +127,9 @@ class LogInPage : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
 
             //before logging in, validate data
-            validateData()
+           validateData()
+
+
         }
 
         //facebook configure/ handle click
@@ -121,7 +140,13 @@ class LogInPage : AppCompatActivity() {
             signIn()
         }
 
+
+
+
     }
+
+
+
 
 
 
@@ -137,69 +162,122 @@ class LogInPage : AppCompatActivity() {
         } else if (TextUtils.isEmpty(password)) {
             //no password entered
             binding.passwordEt.error = "Please enter password"
-        } else {
+        }
+
+        else {
             //data is validated, begin login
             firebaseLogin()
         }
     }
 
+
     private fun firebaseLogin() {
         //show progress
         progressDialog.show()
         firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnSuccessListener {
-                //login success
-                progressDialog.dismiss()
-                //get user info
-                val firebaseUser = firebaseAuth.currentUser
-                val email = firebaseUser!!.email
-                Toast.makeText(this, "Logged in as $email", Toast.LENGTH_SHORT).show()
+                .addOnSuccessListener { _ ->
+                    //login success
+                    progressDialog.dismiss()
 
-                //open profileActivity
-                startActivity(Intent(this, DashboardPage::class.java))
-                finish()
 
+
+                    //get user info
+
+                   val firebaseUser = firebaseAuth.currentUser
+                   val email = firebaseUser!!.email
+
+                    Toast.makeText(this, " $email Logged in Successfully", Toast.LENGTH_SHORT).show()
+
+                    //checkuser user access level function
+
+                    checkUserAccessLevel(null)
+
+
+
+
+
+
+                }
+                .addOnFailureListener { e ->
+                    //login failed
+                    progressDialog.dismiss()
+                    Toast.makeText(this, "Login failed due to ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+    }
+
+    private fun checkUserAccessLevel(user : FirebaseUser?) {
+        var reference: DocumentReference = fStore.collection("users").document(user!!.uid)
+        reference.get().addOnSuccessListener { documentSnapshot ->
+            Log.d("TAG", "onSuccess: " + documentSnapshot.data)
+
+            reference = fStore.collection("users").document(user.getUid())
+            reference.get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val documentSnapshot: DocumentSnapshot = task.result
+                    if (Objects.requireNonNull(documentSnapshot.getString(IS_ADMIN_KEY)).equals("true")) {
+                        showAdminUI()// Show admin UI if user is an admin
+                    } else {
+                        generateAndSaveFCMToken(user) // generate new token for users only when signing in and creating a new account
+                        showRegularUI()// Show user UI if user is a regular user
+                    }
+
+                }
+                else {
+                    Log.d(TAG, "Getting user document failed: ", task.getException())
+                }
             }
-            .addOnFailureListener { e ->
-                //login failed
-                progressDialog.dismiss()
-                Toast.makeText(this, "Login failed due to ${e.message}", Toast.LENGTH_SHORT).show()
-            }
+        }.addOnFailureListener { e ->
+            Log.d(TAG, " LogIn failed due to ${e.message}")
+            Toast.makeText(this@LogInPage, e.message, Toast.LENGTH_SHORT).show() }
+    }
+
+
+
+
+
+    private fun generateAndSaveFCMToken(user: FirebaseUser) {
+        // Generates the FCM (Firebase Cloud Messaging) registration token and stores in a document associated with the user
+        FirebaseMessaging.getInstance().token
+                .addOnCompleteListener(object : OnCompleteListener<String?> {
+                    override fun onComplete(task: Task<String?>) {
+                        if (!task.isSuccessful) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException())
+                            return
+                        }
+                        val token: String = task.result!! // Get new FCM registration token
+                        val userToken: MutableMap<String, Any> = HashMap()
+                        userToken[FCM_TOKEN] = token
+                        fStore.collection("users").document(user.getUid()).update(userToken) // Add token to Firestore
+                    }
+                })
+    }
+
+
+
+    private fun showAdminUI() {
+        // Switches to admin (organizer) UI
+        val intent = Intent(this@LogInPage, AdminDashboardPage::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK) // clears the stack (disables going back with back button)
+        startActivity(intent)
+    }
+
+
+    private fun showRegularUI() {
+        // Switches to admin (organizer) UI
+        val intent = Intent(this@LogInPage, UserDashboardPage::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK) // clears the stack (disables going back with back button)
+        startActivity(intent)
     }
 
     private fun CheckUser() {
-        //if user is already logged in go to profile activity
+       // if user is already logged in go to profile activity
         //get current user
-        val firebaseUser = firebaseAuth.currentUser
+       val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
             //user is already logged in
-            startActivity(Intent(this, DashboardPage::class.java))
+            startActivity(Intent(this, UserDashboardPage::class.java))
             finish()
         }
-    }
-
-
-
-    //start on activity result
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-
-            Log.d(TAG, "onActivityResult: Google SignIn intent result")
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)
-
-                firebaseAuthwithGoogleAccount(account)
-            } catch (e: Exception) {
-                // Google Sign In failed, update UI appropriately
-                Log.d(TAG, "onActivityResult: ${e.message}")
-            }
-        }
-
-        callbackManager.onActivityResult(requestCode,resultCode,data)
     }
 
 
@@ -242,7 +320,7 @@ class LogInPage : AppCompatActivity() {
                     }
 
                     //start profile activity
-                    startActivity(Intent(this@LogInPage , DashboardPage::class.java))
+                    startActivity(Intent(this@LogInPage, UserDashboardPage::class.java))
                     finish()
                 }
                 .addOnFailureListener { e ->
@@ -257,12 +335,15 @@ class LogInPage : AppCompatActivity() {
     }
 
 
+
+
+
     //facebook sign in
     private fun signIn() {
         binding.fbloginBtn.setReadPermissions("email", "public_profile")
         binding.fbloginBtn.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult?) {
-                handleFacebookAccessToken(result!!.accessToken)
+            override fun onSuccess(result: LoginResult) {
+                handleFacebookAccessToken(result.accessToken)
 
             }
 
@@ -270,9 +351,13 @@ class LogInPage : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
 
-            override fun onError(error: FacebookException?) {
 
+
+            override fun onError(error: FacebookException) {
+                TODO("Not yet implemented")
             }
+
+
 
         })
     }
@@ -284,25 +369,56 @@ class LogInPage : AppCompatActivity() {
         //get credential
         val credential = FacebookAuthProvider.getCredential(accessToken!!.token)
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithCredential:success")
-                        val user = firebaseAuth.currentUser
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    firebaseAuth.currentUser
 
-                        startActivity(Intent(this,DashboardPage::class.java))
-                        finish()
+                    startActivity(Intent(this,UserDashboardPage::class.java))
+                    finish()
 
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithCredential:failure", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
 
-                    }
                 }
+            }
 
 
+    }
+
+
+    //start on activity result
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+
+            Log.d(TAG, "onActivityResult: Google SignIn intent result")
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)
+
+                firebaseAuthwithGoogleAccount(account)
+            } catch (e: Exception) {
+                // Google Sign In failed, update UI appropriately
+                Log.d(TAG, "onActivityResult: ${e.message}")
+            }
+        }
+
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+    }
+
+
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed() //go back to previous activity, when back button of actionbar is clicked
+        return super.onSupportNavigateUp()
     }
 
 }

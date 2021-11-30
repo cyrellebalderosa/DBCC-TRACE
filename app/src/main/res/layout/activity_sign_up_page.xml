@@ -37,17 +37,17 @@
 
     <EditText
         android:id="@+id/firstnameEt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
        android:layout_below="@+id/fillTv"
         android:text="First Name"
-        style="@style/TextAppearance.MaterialComponents.Body1"/>
+        style="@style/TextAppearance.MaterialComponents.Caption"/>
 
 
     <EditText
         android:id="@+id/lastnameEt"
-        style="@style/TextAppearance.MaterialComponents.Body1"
-        android:layout_width="wrap_content"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/firstnameEt"
         android:text="Last Name" />
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/lastnameEt"
         android:text="Age"
-        style="@style/TextAppearance.MaterialComponents.Body1"/>
+        style="@style/TextAppearance.MaterialComponents.Caption"/>
 
     <TextView
         android:id="@+id/gendertv"
@@ -74,29 +74,45 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/gendertv"
         android:text="Enter Gender"
-        style="@style/TextAppearance.MaterialComponents.Body1"/>
+        style="@style/TextAppearance.MaterialComponents.Caption"/>
 
     <EditText
         android:id="@+id/addressEt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/genderEt"
         android:text="Address"
-        style="@style/TextAppearance.MaterialComponents.Body1"/>
+        style="@style/TextAppearance.MaterialComponents.Caption"/>
 
     <EditText
         android:id="@+id/numberEt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addressEt"
         android:text="Phone Number"
-        style="@style/TextAppearance.MaterialComponents.Body1"/>
+        style="@style/TextAppearance.MaterialComponents.Caption"/>
+
+    <CheckBox
+        android:id="@+id/asadmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LogIn as Admin"
+        android:layout_below="@+id/numberEt"
+        style="@style/TextAppearance.MaterialComponents.Caption"/>
+
+    <CheckBox
+        android:id="@+id/asuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LogIn as User"
+        android:layout_below="@+id/asadmin"
+        style="@style/TextAppearance.MaterialComponents.Caption"/>
 
     <TextView
         android:id="@+id/emailpasstv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/numberEt"
+        android:layout_below="@+id/asuser"
         style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:text="Please Enter your Email and Password"
         android:layout_margin="10dp"/>
@@ -142,19 +158,12 @@
         android:id="@+id/signUpBtn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up as User"
+        android:text="Sign Up"
       android:layout_below="@+id/passwordTil"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/signUpBtn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/signUpBtn1"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="Sign Up as Admin" />
+
 
 
 </RelativeLayout>
