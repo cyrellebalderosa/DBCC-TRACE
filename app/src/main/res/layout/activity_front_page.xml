@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="#82c0e7"
+    android:background="@color/white"
     tools:context=".FrontPage">
 
    <ImageView

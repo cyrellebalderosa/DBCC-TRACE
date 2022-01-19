@@ -40,6 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        android:layout_below="@+id/fillTv"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
         android:text="First Name"
         style="@style/TextAppearance.MaterialComponents.Caption"/>
 
@@ -50,6 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/firstnameEt"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
         android:text="Last Name" />
 
     <EditText
@@ -57,7 +61,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lastnameEt"
-        android:text="Age"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
+        android:text="Enter Age"
         style="@style/TextAppearance.MaterialComponents.Caption"/>
 
     <TextView
@@ -65,6 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ageEt"
+
         style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:text="Gender"/>
 
@@ -73,6 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gendertv"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
         android:text="Enter Gender"
         style="@style/TextAppearance.MaterialComponents.Caption"/>
 
@@ -81,6 +90,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/genderEt"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
         android:text="Address"
         style="@style/TextAppearance.MaterialComponents.Caption"/>
 
@@ -89,6 +100,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addressEt"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
         android:text="Phone Number"
         style="@style/TextAppearance.MaterialComponents.Caption"/>
 
@@ -96,6 +109,8 @@
         android:id="@+id/asadmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
         android:text="LogIn as Admin"
         android:layout_below="@+id/numberEt"
         style="@style/TextAppearance.MaterialComponents.Caption"/>
@@ -104,6 +119,8 @@
         android:id="@+id/asuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
         android:text="LogIn as User"
         android:layout_below="@+id/asadmin"
         style="@style/TextAppearance.MaterialComponents.Caption"/>
@@ -129,6 +146,8 @@
             android:id="@id/emailEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#2196F3"
             android:hint="Email"
             android:inputType="textEmailAddress"
             style="@style/TextAppearance.MaterialComponents.Body1"/>
@@ -148,6 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textStyle="bold"
             android:hint="Password"
             style="@style/TextAppearance.MaterialComponents.Body1"/>
 

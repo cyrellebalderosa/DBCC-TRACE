@@ -84,8 +84,16 @@
         android:layout_centerHorizontal="true"/>
 
 
+
     <!--Facebook SignIn Button-->
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fbloginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/googleSignInBtn"
+        android:layout_marginBottom="30dp" />
 
 
     <TextView
@@ -97,13 +105,7 @@
         android:layout_below="@+id/loginBtn"
         style="@style/TextAppearance.MaterialComponents.Body1" />
 
-    <!--Facebook SignIn Button-->
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/fblogin_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/googleSignInBtn"
-        android:layout_centerHorizontal="true" />
+
 
 
 

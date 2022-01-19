@@ -1,10 +1,9 @@
 package com.example.dbcctrace
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
-import com.example.dbcctrace.databinding.ActivityAdminDashboardPageBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dbcctrace.databinding.ActivityUserDashboardPageBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -33,11 +32,31 @@ class UserDashboardPage : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
 
-        binding.logouBtn.setOnClickListener {
+        binding.imagemenu.setOnClickListener {
             firebaseAuth.signOut()
             startActivity(Intent(this, LogInPage::class.java))
         }
 
+        binding.notes.setOnClickListener {
+            startActivity(Intent(this, NotesMainPage::class.java))
+        }
+
+    }
+
+    private fun checkUser() {
+        //check user is logged in or not
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null){
+            //user not null, user is logged in, get user info
+            val email = firebaseUser.email
+            //set to text view
+            binding.textUsername.text = email
+        }
+        else{
+            //user is null, user is not logged in, go to login activity
+            startActivity(Intent(this, LogInPage::class.java))
+            finish()
+        }
     }
 
 
