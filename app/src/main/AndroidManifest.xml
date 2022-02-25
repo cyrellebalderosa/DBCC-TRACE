@@ -10,23 +10,53 @@
     </queries>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
-
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/tracelogo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DBCCTRACE"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LogInPage"/>
+        <activity android:name=".RecordsMainPage"></activity>
+        <activity android:name=".AboutUsActivity.AboutUs5" />
+        <activity android:name=".AboutUsActivity.AboutUs4" />
+        <activity android:name=".AboutUsActivity.AboutUs2" />
+        <activity android:name=".AboutUsActivity.AboutUs3" />
+        <activity android:name=".AboutUsActivity.AboutUs1" />
+        <activity android:name=".QRScannerMainActivity" />
+        <activity android:name=".AdminNotifyButtonPage" />
+        <activity android:name=".FrontPage" />
+        <activity android:name=".ShowNotification" />
+        <activity android:name=".AdminCloudNotifyPage">
+            <intent-filter>
+                <action android:name="com.example.dbcctrace" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Notifications"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".UpdateUserProfile" />
+        <activity android:name=".QRCodeScanner" />
+        <activity android:name=".QRcodeResult" />
+        <activity android:name=".GenerateQRcode" />
+        <activity android:name=".SMSnotify" />
+        <activity android:name=".Activity.HomeActivity" />
+        <activity android:name=".AboutUsActivity.AboutUs" />
+        <activity android:name=".LogInPage" />
         <activity android:name=".NotesMainPage" />
-        <activity android:name=".UserProfilePage" />
-        <activity android:name=".UserDashboardPage" />
-        <activity android:name=".AdminDashboardPage" />
         <activity android:name=".SignUpPage" />
-        <activity android:name=".FrontPage">
+        <activity android:name=".UserDashboardPage" />
+        <activity android:name=".UserProfilePage" />
+        <activity android:name=".AdminRecordsPage" />
+        <activity android:name=".EmailNotifyPage" />
+        <activity android:name=".AdminDashboardPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,6 +84,22 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.dbcctrace.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <service android:name=".FCMService">
+            <intent-filter>
+                <action android:name="com.example.dbcctrace" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

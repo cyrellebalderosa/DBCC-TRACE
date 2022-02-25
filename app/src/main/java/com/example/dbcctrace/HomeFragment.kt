@@ -118,4 +118,7 @@ class HomeFragment : BaseFragment() {
         }
         fragmentTransition.replace(R.id.frame_layout,fragment).addToBackStack(fragment.javaClass.simpleName).commit()
     }
+
+
+
 }

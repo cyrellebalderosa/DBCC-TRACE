@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -19,17 +20,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @Suppress("DEPRECATION", "NAME_SHADOWING")
@@ -59,7 +57,9 @@ class LogInPage : AppCompatActivity() {
 
     //Declare FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var fStore: FirebaseFirestore
+    //private lateinit var fStore: FirebaseFirestore
+    private lateinit var database: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
 
     private var email = ""
     private var password = ""
@@ -68,10 +68,10 @@ class LogInPage : AppCompatActivity() {
     lateinit var callbackManager: CallbackManager
     private val EMAIL = "email"
 
+    private lateinit var userName: EditText
+    private lateinit var pass: EditText
 
 
-    val  IS_ADMIN_KEY = "isAdmin"
-    val FCM_TOKEN = "fcmToken"
 
 
 
@@ -93,8 +93,12 @@ class LogInPage : AppCompatActivity() {
 
         //initialize firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
-        fStore = FirebaseFirestore.getInstance()
-        CheckUser()
+        //fStore = FirebaseFirestore.getInstance()
+
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database.getReference("DBCC").child("users")
+
+        //CheckUser()
 
         //configure actionbar
         actionBar = supportActionBar!!
@@ -106,6 +110,10 @@ class LogInPage : AppCompatActivity() {
         progressDialog.setTitle("Please wait")
         progressDialog.setMessage("Logging In..")
         progressDialog.setCanceledOnTouchOutside(false)
+
+
+        userName = findViewById(R.id.emailEt)
+        pass = findViewById(R.id.passwordEt)
 
 
         //handle click, to begin google SignIn
@@ -220,9 +228,87 @@ class LogInPage : AppCompatActivity() {
 
         else {
             //data is validated, begin login
-            firebaseLogin()
+            login()
         }
     }
+
+
+
+    private fun login(){
+
+        var Email = userName.text.toString().trim()
+        var Password = pass.text.toString().trim()
+
+
+        if (Email.isEmpty() || Password.isEmpty() ){
+            Toast.makeText(this, "All Fields Required", Toast.LENGTH_SHORT).show()
+        }else {
+
+            if (isValidEmail(Email)) {
+
+                isEmailExist(email, password)
+                firebaseLogin()
+
+            }else{
+                Toast.makeText(this, "Check you email", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    }
+
+    private fun isEmailExist(email: String, password: String)
+    {
+
+        databaseReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(datasnapshot: DataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+
+
+
+                var list = ArrayList<UsersDB>()
+                var isemailexist = false
+                for(postsnapshot in datasnapshot.children ){
+
+                    val value = postsnapshot.getValue<UsersDB>()
+
+                    if (value!!.Email == email && value.Password == password)
+                    {
+                        isemailexist = true
+                    }
+
+                    list.add(value)
+                }
+
+                if (isemailexist)
+                {
+                    Toast.makeText(this@LogInPage, "LogIn Successfully", Toast.LENGTH_SHORT).show()
+                    showRegularUI()
+                }else{
+                    Toast.makeText(this@LogInPage, "", Toast.LENGTH_SHORT).show()
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+               Log.w(TAG,"Failed to read value", error.toException())
+            }
+
+        })
+    }
+
+
+
+
+
+    private fun isValidEmail(email: String): Boolean{
+        val pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(email).matches()
+    }
+
 
 
     private fun firebaseLogin() {
@@ -233,18 +319,20 @@ class LogInPage : AppCompatActivity() {
                     //login success
                     progressDialog.dismiss()
 
-
-
                     //get user info
+                    if (userName.text.toString() == "dbcc.trace@gmail.com" && pass.text.toString() == "traceadmin"){
+                        showAdminUI()
+                    }else{
+                        showRegularUI()
+                    }
 
-                   val firebaseUser = firebaseAuth.currentUser
-                   val email = firebaseUser!!.email
+                    val user = firebaseAuth.currentUser
+                    val email = user!!.email
 
                     Toast.makeText(this, " $email Logged in Successfully", Toast.LENGTH_SHORT).show()
 
-                    //checkuser user access level function
-
-                    checkUserAccessLevel(null)
+                    //Firebase messageing Token
+                    retrieveAndSToreToken()
 
 
                 }
@@ -255,52 +343,6 @@ class LogInPage : AppCompatActivity() {
                 }
     }
 
-    private fun checkUserAccessLevel(user : FirebaseUser?) {
-        var reference: DocumentReference = fStore.collection("users").document(user!!.uid)
-        reference.get().addOnSuccessListener { documentSnapshot ->
-            Log.d("TAG", "onSuccess: " + documentSnapshot.data)
-
-            reference = fStore.collection("users").document(user.uid)
-            reference.get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val documentSnapshot: DocumentSnapshot = task.result
-                    if (Objects.requireNonNull(documentSnapshot.getString(IS_ADMIN_KEY)).equals("true")) {
-                        showAdminUI()// Show admin UI if user is an admin
-                    } else {
-                        generateAndSaveFCMToken(user) // generate new token for users only when signing in and creating a new account
-                        showRegularUI()// Show user UI if user is a regular user
-                    }
-
-                }
-                else {
-                    Log.d(TAG, "Getting user document failed: ", task.exception)
-                }
-            }
-        }.addOnFailureListener { e ->
-            Log.d(TAG, " LogIn failed due to ${e.message}")
-            Toast.makeText(this@LogInPage, e.message, Toast.LENGTH_SHORT).show() }
-    }
-
-
-
-
-
-    private fun generateAndSaveFCMToken(user: FirebaseUser) {
-        // Generates the FCM (Firebase Cloud Messaging) registration token and stores in a document associated with the user
-        FirebaseMessaging.getInstance().token
-                .addOnCompleteListener(object : OnCompleteListener<String?> {
-                    override fun onComplete(task: Task<String?>) {
-                        if (!task.isSuccessful) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-                            return
-                        }
-                        val token: String = task.result!! // Get new FCM registration token
-                        val userToken: MutableMap<String, Any> = HashMap()
-                        userToken[FCM_TOKEN] = token
-                        fStore.collection("users").document(user.uid).update(userToken) // Add token to Firestore
-                    }
-                })
-    }
 
 
 
@@ -319,6 +361,26 @@ class LogInPage : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+    private fun retrieveAndSToreToken(){
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+
+                if(task.isSuccessful){
+                    val token = task.result
+
+                    val uid = FirebaseAuth.getInstance().currentUser!!.uid
+
+                    FirebaseDatabase.getInstance()
+                        .getReference("tokens")
+                        .child(uid)
+                        .setValue(token)
+                }
+            }
+    }
+
+
+/**
     private fun CheckUser() {
        // if user is already logged in go to profile activity
         //get current user
@@ -326,11 +388,14 @@ class LogInPage : AppCompatActivity() {
         if (firebaseUser != null) {
             //user is already logged in
 
-            startActivity(Intent(this, UserDashboardPage::class.java))
-            finish()
+            if (userName.text.toString() == "dbcc.trace@gmail.com" && pass.text.toString() == "traceadmin"){
+                showAdminUI()
+            }else{
+                showRegularUI()
+            }
         }
     }
-
+*/
 
 
 
@@ -384,15 +449,6 @@ class LogInPage : AppCompatActivity() {
 
 
     }
-
-
-
-
-
-
-
-
-
 
 
 

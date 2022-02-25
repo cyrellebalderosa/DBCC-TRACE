@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dbcctrace.AboutUsActivity.AboutUs
 import com.example.dbcctrace.databinding.ActivityUserDashboardPageBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class UserDashboardPage : AppCompatActivity() {
 
@@ -30,10 +32,16 @@ class UserDashboardPage : AppCompatActivity() {
         actionBar.title = "User Dashboard"
 
         firebaseAuth = FirebaseAuth.getInstance()
+        checkUser()
 
 
         binding.imagemenu.setOnClickListener {
+
+            clearToken(FirebaseAuth.getInstance().currentUser!!.uid)
             firebaseAuth.signOut()
+            checkUser()
+
+
             startActivity(Intent(this, LogInPage::class.java))
         }
 
@@ -41,6 +49,30 @@ class UserDashboardPage : AppCompatActivity() {
             startActivity(Intent(this, NotesMainPage::class.java))
         }
 
+        binding.profile.setOnClickListener {
+            startActivity(Intent(this, UserProfilePage::class.java))
+        }
+
+        binding.aboutus.setOnClickListener {
+            startActivity(Intent(this, AboutUs::class.java))
+        }
+        binding.layoutqrcode.setOnClickListener {
+            startActivity(Intent(this, GenerateQRcode::class.java))
+        }
+        
+        binding.layoutnotify.setOnClickListener {
+            startActivity(Intent(this, EmailNotifyPage::class.java))
+        }
+
+    }
+
+
+    private fun clearToken(userId: String){
+        FirebaseDatabase
+            .getInstance()
+            .getReference("tokens")
+            .child(userId)
+            .removeValue()
     }
 
     private fun checkUser() {

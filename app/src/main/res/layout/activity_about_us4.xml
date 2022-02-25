@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".AboutUsActivity.AboutUs4">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:fillViewport="true"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="TERMS AND CONDITION"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:fontFamily="sans-serif-condensed"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/black"
+                    android:text="Updated at 2022-03-01"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="15sp"/>
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="
+General Terms
+By accessing and placing an order with DBCC TRACE, you confirm that you are in agreement with and bound by the terms of service contained in the Terms and Conditions outlined below. These terms apply to the entire website and any email or other type of communication between you and DBCC TRACE.
+Under no circumstances shall DBCC TRACE team be liable for any direct, indirect, special, incidental or consequential damages,including, but not limited to, loss of data or profit, arising out of the use, or the inability to use, the materials on this site, even if DBCC TRACE team or an authorized representative has been advised of the possibility of such damages. If your use of materials from this site results in the need for servicing, repair or correction of equipment or data, you assume any costs thereof.
+DBCC TRACE will not be responsible for any outcome that may occur during the course of usage of our resources. We reserve the rights to change prices and revise the resources usage policy in any moment.
+"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <View
+                        android:layout_width="90dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/white"
+                        android:text="License"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textSize="15sp"/>
+                    <View
+                        android:layout_width="90dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/black"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DBCC TRACE grants you a revocable, non-exclusive, non- transferable, limited license to download, install and use the app strictly in accordance with the terms of this Agreement. These Terms and Conditions are a contract between you and DBCC TRACE (we, our,or us) grants you a revocable, non-exclusive, non- transferable, limited license to download, install and use the app strictly in accordance with the terms of this Agreement."
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <View
+                        android:layout_width="90dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/white"
+                        android:text="Restrictions"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textSize="15sp"/>
+                    <View
+                        android:layout_width="90dp"
+                        android:layout_height="0.5dp"
+                        android:background="@color/black"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:text="You agree not to, and you will not permit others to:
+ • License, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the service or make the platform available to any third party.
+  • Modify, make derivative works of, disassemble, decrypt, reverse compile or reverse engineer any part of the service.
+  • Remove, alter or obscure any proprietary notice (including any notice of copyright or trademark) of or its affiliates, partners, suppliers or the licensors of the service."
+                    ></TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/white"
+                    android:text="Content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="15sp"/>
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="The Application is only available and for Daraga Bible Christian Church purposes only.
+Our Service allows you to send message to the Admin if ever you are tested positive to the Covid-19 and allows the Admin to notify your close-contacts through the Application however, your identity will not be disclosed.
+Proposed application will not track if someone that turned positive is following the safety protocol, especially the self-quarantine and social distancing guidelines.
+It can’t warn users when an infected person is also within the premises of the users.
+The developers are not expected to conduct maintenance to the system"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/white"
+                    android:text="Cookies"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="15sp"/>
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We use Cookies to identify the areas of our website that you have visited. A Cookie is a small piece of data stored on your computer or mobile device by your web browser. We use Cookies to enhance the performance and functionality of our service but are non-essential to their use. However, without these cookies, certain functionality like videos may become unavailable or you would be required to enter your login details every time you visit our platform as we would not be able to remember that you had logged in previously. Most web browsers can be set to disable the use of Cookies. However, if you disable Cookies, you may not be able to access functionality on our website correctly or at all. We never place Personally ldentifiable Information in Cookies.
+"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/white"
+                    android:text="The information we collect"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="15sp"/>
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Our application collects and analyze a range of information, this may include:
+•	Biographical information that you have supplied to us.
+•	Location information, meaning data which reveals the geographic location of you and your mobile device. We will only collect your location information where you have explicitly agreed to our doing so by clicking ‘OK’ on your mobile device.
+•	Information about the type of mobile device you own.
+•	App Metadata, which means information about the way in which our app is used and how it functions on your mobile device (for example, which app screens you use most, how long it takes to transmit information to us, the volume of information, etc.). Metadata does not include any personal information about you. We collect metadata via Google Analytics in order to improve the usability and performance of our app.
+•	Survey or other information, which means information contained in the responses given by you to survey or polling questions, or other information entered by you in the app, dashboard or on the website, or any other information you choose to provide using the app, dashboard or the website from time to time;
+•	Information received from other sources including other websites we operate or the other services we provide (including our support function).
+•	Information entered into an onsite chatbot, for the purposes of obtaining guidance and information"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/white"
+                    android:text="Security"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="15sp"/>
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="0.5dp"
+                    android:background="@color/black"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The transmission of information via the internet is not completely secure. Although we will do our best to protect your personal data, for example by providing data encryption, we cannot guarantee the security of your data transmitted to our Site or app. Any transmission is at your own risk. However, we take the privacy of your personal information very seriously and use a number of methods to try to keep your personal information secure from loss or unauthorized use or access when it is in our possession or control. These methods include reasonable physical, technical and organizational measures to restrict access to your personal information. For example, your personal information is encrypted when stored or transmitted by us using secure socket technology (SSL).
+
+Where we have given you (or where you have chosen) a password which enables you to access certain parts of our Site and/or apps, you are responsible for keeping this password confidential. We ask you not to share your password with anyone. Where you are given access to our app by one of our Clients, the Client will have its own requirements with respect to your access to the app and may direct you with respect to password and logon information. We are not responsible for third party (including Client) security practices.
+Where required by applicable law, we will notify you of any loss of or unauthorized access to your personal information, and we will cooperate with the appropriate authorities to investigate such incidents. "
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="18sp"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

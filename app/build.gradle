@@ -73,8 +73,15 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation platform('com.google.firebase:firebase-bom:29.0.4')
+
+    // Declare the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.jpardogo.googleprogressbar:library:1.2.0'
 
 
     //facebook dependencies
@@ -84,6 +91,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:23.0.1'
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.3'
     // implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
 
@@ -91,6 +99,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     //cardview
         implementation "androidx.cardview:cardview:1.0.0"
@@ -101,9 +110,6 @@ dependencies {
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-
-
-    //new notes dependencies
 
     //material design
     implementation 'com.google.android.material:material:1.2.0'
@@ -126,6 +132,32 @@ dependencies {
     //coroutines dependency
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
 
+    //circle image view
     implementation 'com.mikhaellopez:circularimageview:4.1.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //QR Code dependency
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+    implementation 'com.google.zxing:zxingorg:3.3.3'
+
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation 'com.karumi:dexter:6.2.2'
+
+
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
+    implementation 'com.google.zxing:core:3.3.2'
+
+
+    //Libraries for pdf and print
+    implementation 'com.itextpdf:itextg:5.5.10'
+    implementation 'com.karumi:dexter:5.0.0'
+
+
+    //google sheets db
+    implementation 'com.android.volley:volley:1.2.1'
+
+
+
+
 
 }

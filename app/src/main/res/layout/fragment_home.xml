@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".NotesMainPage">
 
 
@@ -11,14 +12,14 @@
         android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_20sdp"
+        android:textSize="@dimen/_30sdp"
         android:text="@string/notes"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:paddingStart="@dimen/_10sdp"
         android:paddingTop="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/futuraboldfont"
+        android:fontFamily="cursive"
         />
 
 
@@ -43,7 +44,6 @@
         android:id="@+id/fabBtnCreateNote"
         tools:viewBindingIgnore="true"
         android:background="@color/colorPrimaryDark"
-        android:tint="@color/white"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

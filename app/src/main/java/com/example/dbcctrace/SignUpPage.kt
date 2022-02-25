@@ -5,20 +5,18 @@ package com.example.dbcctrace
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Patterns
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dbcctrace.databinding.ActivitySignUpPageBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import java.util.*
-import kotlin.properties.Delegates
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 
-@Suppress("DEPRECATION")
+
 class SignUpPage : AppCompatActivity() {
 
     //view binding
@@ -32,28 +30,24 @@ class SignUpPage : AppCompatActivity() {
 
     //FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var fStore: FirebaseFirestore
-    private var valid by Delegates.notNull<Boolean>()
+    private lateinit var database: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
 
 
     private var email = ""
     private var password = ""
     private lateinit var fname: EditText
     private lateinit var lname: EditText
-    private lateinit var gender1: EditText
     private lateinit var age1: EditText
     private lateinit var address1: EditText
     private lateinit var phone1: EditText
     private lateinit var userName: EditText
     private lateinit var pass: EditText
-
-
-    private lateinit var isAdminbox: CheckBox
-    private lateinit var isUserbox: CheckBox
+    private lateinit var gender: EditText
 
 
 
-     val  IS_ADMIN_KEY = "isAdmin"
+
 
 
 
@@ -80,7 +74,9 @@ class SignUpPage : AppCompatActivity() {
 
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
-        fStore = FirebaseFirestore.getInstance()
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database.getReference("users")
+
 
 
 
@@ -88,176 +84,115 @@ class SignUpPage : AppCompatActivity() {
         pass = findViewById(R.id.passwordEt)
         fname = findViewById(R.id.firstnameEt)
         lname = findViewById(R.id.lastnameEt)
-        gender1 = findViewById(R.id.genderEt)
+
         age1 = findViewById(R.id.ageEt)
         address1 = findViewById(R.id.addressEt)
         phone1 = findViewById(R.id.numberEt)
+        gender = findViewById(R.id.genderEt)
 
-        //checkbox
-        isAdminbox = findViewById(R.id.asadmin)
-        isUserbox = findViewById(R.id.asuser)
-
-
-        isAdminbox.setOnCheckedChangeListener { compoundButton, _ ->
-
-            if (compoundButton.isChecked){
-                isUserbox.isChecked = false
-            }
-        }
-
-
-        isUserbox.setOnCheckedChangeListener { compoundButton, _ ->
-
-            if (compoundButton.isChecked){
-                isAdminbox.isChecked = false
-            }
-        }
 
         //handle click, begin signup
+
         binding.signUpBtn1.setOnClickListener {
-
-
-            checkField(fname)
-            checkField(lname)
-            checkField(gender1)
-            checkField(age1)
-            checkField(address1)
-            checkField(phone1)
-
-
-            //validate data
-            validateData()
-
-            if (!(isAdminbox.isChecked() || isUserbox.isChecked())){
-                Toast.makeText(this, "Select the Account type", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-
-        }
-
-
-
-
-
-
-
-
-
-    }
-
-
-    fun saveFireStore() {
-        val db = FirebaseFirestore.getInstance()
-        val user: MutableMap<String, Any> = HashMap()
-        val firebaseUser = firebaseAuth.currentUser
-
-
-        // Add user admin privileges to 'users' collection in Firestore
-        firebaseUser?.let { fStore.collection("users").document(it.uid).set(user) }
-
-        user.put("Username", userName.text.toString())
-        user.put("Password", pass.text.toString())
-        user.put("Firstname", fname.text.toString())
-        user.put("Lastname", lname.text.toString())
-        user.put("Age", age1.text.toString())
-        user.put("Gender", gender1.text.toString())
-        user.put("Address", address1.text.toString())
-        user.put("PhoneNum", phone1.text.toString())
-        user.put(IS_ADMIN_KEY, "false") // by default a new user is not an admin
-
-
-
-
-
-        //specify if user is Admin
-        if (isAdminbox.isChecked) {
-            user.put("isAdmin", "1")
-        }
-
-        if (isUserbox.isChecked) {
-            user.put("isUser", "1")
-        }
-
-
-
-
-
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener {
-                    Toast.makeText(this@SignUpPage, "record added succesfully", Toast.LENGTH_SHORT).show()
-
-                    if (isAdminbox.isChecked){
-                    startActivity(Intent(this, AdminDashboardPage::class.java))
-                    finish()
-                    }
-
-                    if (isUserbox.isChecked){
-                        startActivity(Intent(this, UserDashboardPage::class.java))
-                        finish()
-                    }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this@SignUpPage, "record failed to add", Toast.LENGTH_SHORT).show()
-
-                }
-
-
-    }
-
-    fun checkField(textField: EditText): Boolean {
-        if (textField.text.toString().isEmpty()) {
-            textField.error = "Error"
-            valid = false
-        } else {
-            valid = true
-        }
-        return valid
-    }
-
-    private fun validateData() {
-        //get data
-        email = binding.emailEt.text.toString().trim()
-        password = binding.passwordEt.text.toString().trim()
-
-        //validate data
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            //invalid emailformat
-            binding.emailEt.error = "Invalid email format"
-        }
-        else if (TextUtils.isEmpty(password)){
-            //password isn't entered
-            binding.passwordEt.error = "Please enter password"
-        }
-        else if (password.length <6){
-            //password length is less than 6
-
-            binding.passwordEt.error= "Password must be atleast 6 charactrs long"
-        }
-        else{
-            //data is valid, continue to sign up
             firebaseSignUp()
         }
+
+
+
+
     }
+
+
+
+
+    private fun signUp(){
+        var Firstname = fname.text.toString().trim()
+        var Lastname = lname.text.toString().trim()
+        var Age = age1.text.toString().trim()
+        var Address = address1.text.toString().trim()
+        var PhoneNum = phone1.text.toString().trim()
+        var Email = userName.text.toString().trim()
+        var Password = pass.text.toString().trim()
+        var Gender = gender.text.toString().trim()
+
+        val uid = firebaseAuth.currentUser?.uid
+
+        if (userName.text.toString() == "dbcc.trace@gmail.com" && pass.text.toString() == "traceadmin"){
+            showAdminUI()
+        }else{
+            showRegularUI()
+        }
+
+
+
+        if (Email.isEmpty() || Password.isEmpty() || Firstname.isEmpty() || Lastname.isEmpty()){
+            Toast.makeText(this@SignUpPage, "All Fields Required", Toast.LENGTH_SHORT).show()
+        }else {
+
+            if (isValidEmail(Email)) {
+
+                val userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+                if (uid != null) {
+                    var model = UsersDB(Firstname, Lastname, Age, Address, PhoneNum, Email, Password, Gender, userId)
+
+
+                    //DATA INSERT HERE TO DATABASE
+                    databaseReference.child(uid).setValue(model)
+                    Toast.makeText(this@SignUpPage, "SignUp successfull", Toast.LENGTH_SHORT).show()
+
+
+                    showRegularUI()
+
+                } else {
+                    Toast.makeText(this@SignUpPage, "Check you email", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        }
+
+    }
+
+    private fun isValidEmail(email: String): Boolean{
+        val pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(email).matches()
+    }
+
 
     private fun firebaseSignUp() {
         //show progress
         progressDialog.show()
 
+        var Email = userName.text.toString().trim()
+        var Password = pass.text.toString().trim()
+
         //create account
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(Email, Password)
                 .addOnSuccessListener {
                     //signup successful
                     progressDialog.dismiss()
+
+
+                    if (userName.text.toString() == "dbcc.trace@gmail.com" && pass.text.toString() == "traceadmin"){
+                        showAdminUI()
+                    }else{
+                        showRegularUI()
+                    }
+
+
                     //get current user
                     val firebaseUser = firebaseAuth.currentUser
                     val email = firebaseUser!!.email
 
                     Toast.makeText(this, "Account created with email $email", Toast.LENGTH_SHORT).show()
 
-                    //save data to firestore
-                    saveFireStore()
+                    //save data to firebase database
+                    signUp()
+
+
+
+                    //Firebase messageing Token
+                    retrieveAndSToreToken()
 
                 }
                 .addOnFailureListener { e->
@@ -267,8 +202,35 @@ class SignUpPage : AppCompatActivity() {
                 }
     }
 
+    private fun showRegularUI() {
+        // Switches to admin (organizer) UI
+        val intent = Intent(this@SignUpPage, UserDashboardPage::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK) // clears the stack (disables going back with back button)
+        startActivity(intent)
+    }
+    private fun showAdminUI() {
+        // Switches to admin (organizer) UI
+        val intent = Intent(this@SignUpPage, AdminDashboardPage::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK) // clears the stack (disables going back with back button)
+        startActivity(intent)
+    }
 
+    private fun retrieveAndSToreToken(){
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
 
+                if(task.isSuccessful){
+                    val token = task.result
+
+                    val uid = FirebaseAuth.getInstance().currentUser!!.uid
+
+                    FirebaseDatabase.getInstance()
+                        .getReference("tokens")
+                        .child(uid)
+                        .setValue(token)
+                }
+            }
+    }
 
 
     override fun onSupportNavigateUp(): Boolean {

@@ -11,9 +11,13 @@
     <color name="yellow">#FFd633</color>
     <color name="blue">#4e33FF</color>
     <color name="gray">#CCCCCC</color>
-    <color name="colorBackground">#EBEBEB</color>
+    <color name="colorBackground">#F3EBEBEB</color>
 
     <color name="colorPrimary">#2BCC6F</color>
     <color name="colorPrimaryDark">#0099ff</color>
     <color name="colorAccent">#D81B60</color>
+
+
+
+
 </resources>

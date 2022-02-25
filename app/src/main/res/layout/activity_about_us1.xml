@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".AboutUsActivity.AboutUs1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="WHAT IS TRACE?"
+                android:textSize="40sp"
+                android:fontFamily="sans-serif-medium"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <View
+                android:layout_width="90dp"
+                android:layout_height="0.5dp"
+                android:background="@color/black"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/black"
+                android:text="INFORMATION ABOUT APP"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="15sp"/>
+            <View
+                android:layout_width="90dp"
+                android:layout_height="0.5dp"
+                android:background="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="29dp"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:fillViewport="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="The COVID-19 pandemic has led to a substantial loss of human life worldwide and presents an extraordinary challenge to public health. As the coronavirus pandemic swiftly glides across the world, it is inducing a considerable degree of fear, worry and concern in every aspect. Loss of lives due to any pandemic causes definite irretrievable damage to the society. To be of help of slowing down the spread of virus, the developers decided to develop an application for a specific organization the “Daraga Bible Christian Church”. DBCC TRACE is a contact tracing application that will be used by members of the Daraga Bible Christian Church. The Covid-19 continues to spread but most of buildings and establishments are still using the traditional contact tracing in which this way the tracing takes too long.
+The application generates a QR code for the users which contains their personal information, creates a notification feature to notify the users of church announcements, providing a note-taking feature that will assist users in staying on track with the important things/events that they want to remember or keep as a reminder and provides a seat feature where admins choose their seats when they attend an event.
+The application is available for Daraga Bible Christian Church, a religious organization located at 2nd Floor Dy Building., Paterno St., Kimantong 4501 Daraga, Philippines. The church was built on March 5, 1981. The organization holds events such as Sunday Service held every Sunday, a prayer meeting every Wednesday, wedding ceremonies, christening and a random fellowship.
+DBCC TRACE aims to become a useful application that could help in slowing down the spread of the virus and to make contact tracing a lot easier and faster.
+"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    />
+
+
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

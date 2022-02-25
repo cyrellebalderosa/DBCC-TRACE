@@ -4,8 +4,9 @@
     <string name="facebook_app_id">452537079605520</string>
     <string name="fb_login_protocol_scheme">fb452537079605520</string>
 
-    <string name="username">Jp</string>
+
     <string name="qrcode">QRcode</string>
+    <string name="scan">Scan</string>
     <string name="notify">Notify</string>
     <string name="seat">Seat</string>
     <string name="notes">My Notes</string>

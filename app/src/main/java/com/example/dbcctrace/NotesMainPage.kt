@@ -36,4 +36,10 @@ class NotesMainPage : AppCompatActivity() {
         }
     }
 
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed() //go back to previous activity, when back button of actionbar is clicked
+        return super.onSupportNavigateUp()
+    }
+
 }

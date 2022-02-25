@@ -12,7 +12,7 @@
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp"
         android:layout_margin="@dimen/_5sdp"
-        app:cardBackgroundColor="@color/gray"
+        app:cardBackgroundColor="@color/colorBackground"
         android:padding="@dimen/_5sdp">
 
         <LinearLayout
@@ -25,13 +25,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_15sdp"
-                android:text="@string/notes_title"
+                android:hint="@string/notes_title"
                 android:textColor="@color/black"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingTop="@dimen/_10sdp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:fontFamily="@font/futuramediumbt"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 />
 
 
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_11sdp"
-                android:text="@string/notes_desc"
+                android:hint="@string/notes_desc"
                 android:textColor="@color/black"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingTop="@dimen/_5sdp"
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_9sdp"
-            android:text="@string/date"
+            android:hint="@string/date"
             android:textColor="@color/black"
             android:paddingStart="@dimen/_10sdp"
             android:paddingTop="@dimen/_2sdp"
