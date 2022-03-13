@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.Window
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,9 +23,18 @@ class AdminRecordsPage : AppCompatActivity(){
     private lateinit var dialog: Dialog
 
 
+    //ActionBar
+    private lateinit var actionBar: ActionBar
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_records_page)
+
+
+        //configure actionbar
+        actionBar = supportActionBar!!
+        actionBar.title = "All User Records"
 
 
         userRecyclerview = findViewById(R.id.userlist)

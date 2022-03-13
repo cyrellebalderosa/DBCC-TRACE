@@ -34,7 +34,7 @@ class SMSnotify : AppCompatActivity() {
 
         }
         else
-            recieveMsg()
+            //recieveMsg()
 
         binding.sendsmsbtn.setOnClickListener {
 

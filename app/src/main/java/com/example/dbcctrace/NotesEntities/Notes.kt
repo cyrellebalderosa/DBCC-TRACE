@@ -1,4 +1,4 @@
-package com.example.dbcctrace.entities
+package com.example.dbcctrace.NotesEntities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

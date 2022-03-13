@@ -8,9 +8,9 @@ import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.dbcctrace.adapter.NotesAdapter
-import com.example.dbcctrace.database.NotesDatabase
+import com.example.dbcctrace.Notesdatabase.NotesDatabase
 import com.example.dbcctrace.databinding.FragmentHomeBinding
-import com.example.dbcctrace.entities.Notes
+import com.example.dbcctrace.NotesEntities.Notes
 import kotlinx.coroutines.launch
 
 

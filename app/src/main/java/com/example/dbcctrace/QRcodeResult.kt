@@ -1,6 +1,7 @@
 package com.example.dbcctrace
 
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +15,19 @@ class QRcodeResult : AppCompatActivity() {
     private lateinit var qrRecyclerview: RecyclerView
     private lateinit var qrArrayList : ArrayList<QRdata>
 
+
+    //ActionBar
+    private lateinit var actionBar: ActionBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQrCodeResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        //configure actionbar
+        actionBar = supportActionBar!!
+        actionBar.title = "Scanned QR Code"
 
         qrRecyclerview = findViewById(R.id.recyclerQRresult)
         qrRecyclerview.layoutManager = LinearLayoutManager(this)
@@ -28,6 +38,9 @@ class QRcodeResult : AppCompatActivity() {
         getQRdata()
 
     }
+
+
+
 
     private fun getQRdata() {
 

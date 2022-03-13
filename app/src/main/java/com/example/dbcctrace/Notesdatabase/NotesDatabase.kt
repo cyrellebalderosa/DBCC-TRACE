@@ -1,11 +1,11 @@
-package com.example.dbcctrace.database
+package com.example.dbcctrace.Notesdatabase
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.dbcctrace.NotesEntities.Notes
 import com.example.dbcctrace.dao.NoteDao
-import com.example.dbcctrace.entities.Notes
 
 @Database(entities = [Notes::class], version = 1, exportSchema = false)
 abstract class NotesDatabase: RoomDatabase(){

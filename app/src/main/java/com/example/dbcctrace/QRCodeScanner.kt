@@ -3,6 +3,8 @@ package com.example.dbcctrace
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +18,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class QRCodeScanner : AppCompatActivity() {
+
     private lateinit var binding: ActivityQrCodeScannerBinding
 
     private lateinit var codeScanner: CodeScanner
     private lateinit var result: TextView
+    private lateinit var seatnum:EditText
+    private lateinit var savebtn:Button
     var currentDate:String? = null
 
 
@@ -34,8 +39,6 @@ class QRCodeScanner : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        //database = FirebaseDatabase.getInstance()
-        //database = database.getReference("QRdata")
 
 
 
@@ -46,6 +49,8 @@ class QRCodeScanner : AppCompatActivity() {
 
 
         result = findViewById(R.id.qrresult)
+        seatnum = findViewById(R.id.scanseatnum)
+        savebtn = findViewById(R.id.scansavebtn)
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) ==
             PackageManager.PERMISSION_DENIED){
@@ -57,7 +62,18 @@ class QRCodeScanner : AppCompatActivity() {
             startScanning()
         }
 
+
+
+
+
     }
+
+
+
+
+
+
+
 
     private fun startScanning() {
         val scannerView : CodeScannerView = findViewById(R.id.scanner_view)
@@ -72,38 +88,10 @@ class QRCodeScanner : AppCompatActivity() {
 
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan Result: ${it.text}", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Scan Result: ${it.text}", Toast.LENGTH_SHORT).show()
 
                 binding.qrresult.text = it.text
 
-
-                var uniqueID = UUID.randomUUID().toString()
-                val scannedqr = binding.qrresult.text.toString()
-
-                val date = currentDate
-
-
-
-
-                val qrdata = it.text.toString()
-
-                database = FirebaseDatabase.getInstance().getReference("QRdata")
-
-                val data = QRdata(scannedqr, uniqueID, date)
-                database.child(uniqueID!!).setValue(data)
-                        .addOnSuccessListener {
-
-                            Toast.makeText(this, "Successfully Saved QR data", Toast.LENGTH_SHORT).show()
-
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this, "Failed to Save QR data", Toast.LENGTH_SHORT).show()
-
-                        }
-
-
-                //startActivity(Intent(this, QRcodeResult::class.java)
-                  //  .putExtra("QR Result: ${it.text}", result.text.toString() ))
 
             }
         }
@@ -117,9 +105,76 @@ class QRCodeScanner : AppCompatActivity() {
 
         scannerView.setOnClickListener {
             codeScanner.startPreview()
+            seatnum.text.clear()
+        }
+
+        savebtn.setOnClickListener {
+
+            //binding.qrresult.text = it.text
+
+            val uniqueID = UUID.randomUUID().toString()
+            val scannedqr = binding.qrresult.text.toString()
+            val seat = binding.scanseatnum.text.toString()
+
+            val date = currentDate
+
+
+
+            database = FirebaseDatabase.getInstance().getReference("QRdata")
+
+            val data = QRdata(scannedqr, uniqueID, date, seat)
+            database.child(uniqueID).setValue(data)
+                    .addOnSuccessListener {
+
+                        binding.scanseatnum.text.clear()
+                        Toast.makeText(this, "Successfully Saved QR data", Toast.LENGTH_SHORT).show()
+
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Failed to Save QR data", Toast.LENGTH_SHORT).show()
+
+                    }
+        }
+
+
+
+
+    }
+    private fun saveToDatabase(){
+        codeScanner.decodeCallback = DecodeCallback {
+            runOnUiThread {
+                Toast.makeText(this, "Scan Result: ${it.text}", Toast.LENGTH_SHORT).show()
+
+                binding.qrresult.text = it.text
+
+                val uniqueID = UUID.randomUUID().toString()
+                val scannedqr = binding.qrresult.text.toString()
+                val seat = binding.scanseatnum.text.toString()
+
+                val date = currentDate
+
+
+
+                database = FirebaseDatabase.getInstance().getReference("QRdata")
+
+                val data = QRdata(scannedqr, uniqueID, date, seat)
+                database.child(uniqueID).setValue(data)
+                        .addOnSuccessListener {
+
+                            Toast.makeText(this, "Successfully Saved QR data", Toast.LENGTH_SHORT).show()
+
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Failed to Save QR data", Toast.LENGTH_SHORT).show()
+
+                        }
+
+            }
         }
 
     }
+
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -134,6 +189,8 @@ class QRCodeScanner : AppCompatActivity() {
             }
         }
     }
+
+
 
     override fun onResume() {
         super.onResume()

@@ -22,16 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DBCCTRACE"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RecordsMainPage"></activity>
-        <activity android:name=".AboutUsActivity.AboutUs5" />
-        <activity android:name=".AboutUsActivity.AboutUs4" />
-        <activity android:name=".AboutUsActivity.AboutUs2" />
-        <activity android:name=".AboutUsActivity.AboutUs3" />
-        <activity android:name=".AboutUsActivity.AboutUs1" />
-        <activity android:name=".QRScannerMainActivity" />
-        <activity android:name=".AdminNotifyButtonPage" />
-        <activity android:name=".FrontPage" />
-        <activity android:name=".ShowNotification" />
+        <activity android:name=".AdminGenerateQR" />
         <activity android:name=".AdminCloudNotifyPage">
             <intent-filter>
                 <action android:name="com.example.dbcctrace" />
@@ -42,6 +33,16 @@
         <activity
             android:name=".Notifications"
             tools:ignore="Instantiatable" />
+        <activity android:name=".RecordsMainPage" />
+        <activity android:name=".AboutUsActivity.AboutUs5" />
+        <activity android:name=".AboutUsActivity.AboutUs4" />
+        <activity android:name=".AboutUsActivity.AboutUs2" />
+        <activity android:name=".AboutUsActivity.AboutUs3" />
+        <activity android:name=".AboutUsActivity.AboutUs1" />
+        <activity android:name=".AdminNotifyButtonPage" />
+        <activity android:name=".AdminDeleteUser" />
+        <activity android:name=".AdminDashboardPage"/>
+        <activity android:name=".ShowNotification" />
         <activity android:name=".UpdateUserProfile" />
         <activity android:name=".QRCodeScanner" />
         <activity android:name=".QRcodeResult" />
@@ -56,7 +57,7 @@
         <activity android:name=".UserProfilePage" />
         <activity android:name=".AdminRecordsPage" />
         <activity android:name=".EmailNotifyPage" />
-        <activity android:name=".AdminDashboardPage">
+        <activity android:name=".FrontPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

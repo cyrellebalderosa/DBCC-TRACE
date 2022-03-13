@@ -1,6 +1,7 @@
 package com.example.dbcctrace
 
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +15,17 @@ class AdminCloudNotifyPage : AppCompatActivity() {
     private val  userList: MutableList<NotifyUsers> = mutableListOf()
     private lateinit var dbref : DatabaseReference
 
+    //ActionBar
+    private lateinit var actionBar: ActionBar
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_cloud_notify_page)
+
+        //configure actionbar
+        actionBar = supportActionBar!!
+        actionBar.title = "In App Noification"
 
 
         recyclerView = findViewById(R.id.Notifyuserlist)

@@ -35,6 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_rv_notes"
        />
 
 

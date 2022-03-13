@@ -6,16 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".AdminRecordsPage">
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        tools:ignore="MissingConstraints">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        tools:ignore="MissingConstraints">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userlist"
-        android:layout_width="0dp"
+        android:layout_width="700dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/user_item_records"/>
+        android:orientation="horizontal"
+        android:scrollbars="none"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-3dp"
+        tools:listitem="@layout/user_item_records" />
 
-
-
+    </ScrollView>
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

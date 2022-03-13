@@ -25,6 +25,10 @@ class RecordsAdapter(private val userlist : ArrayList<UserItemsDb>)
         holder.FirstName.text = currentitem.Firstname
         holder.LastName.text = currentitem.Lastname
         holder.Age.text = currentitem.Age
+        holder.Address.text = currentitem.Address
+        holder.PhoneNum.text = currentitem.PhoneNum
+        holder.id.text = currentitem.id
+
     }
 
     override fun getItemCount(): Int {
@@ -37,6 +41,9 @@ class RecordsAdapter(private val userlist : ArrayList<UserItemsDb>)
         val FirstName : TextView = itemView.findViewById(R.id.tvfirstName)
         val LastName : TextView = itemView.findViewById(R.id.tvlastName)
         val Age : TextView = itemView.findViewById(R.id.tvage)
+        val Address : TextView = itemView.findViewById(R.id.tvaddress)
+        val PhoneNum : TextView = itemView.findViewById(R.id.tvphonenum)
+        val id : TextView = itemView.findViewById(R.id.tvid)
 
     }
 }

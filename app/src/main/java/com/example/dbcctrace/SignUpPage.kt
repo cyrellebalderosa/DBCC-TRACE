@@ -87,7 +87,7 @@ class SignUpPage : AppCompatActivity() {
 
         age1 = findViewById(R.id.ageEt)
         address1 = findViewById(R.id.addressEt)
-        phone1 = findViewById(R.id.numberEt)
+        phone1 = findViewById(R.id.contactEt)
         gender = findViewById(R.id.genderEt)
 
 
@@ -165,6 +165,8 @@ class SignUpPage : AppCompatActivity() {
 
         var Email = userName.text.toString().trim()
         var Password = pass.text.toString().trim()
+
+
 
         //create account
         firebaseAuth.createUserWithEmailAndPassword(Email, Password)

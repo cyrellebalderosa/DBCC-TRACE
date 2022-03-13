@@ -23,6 +23,7 @@ class QRresultAdapter(private val qrList:ArrayList<QRdata>)
 
         holder.qrdata.text = currentitem.scannedqr
         holder.qrdate.text = currentitem.date
+        holder.qrseat.text = currentitem.seat
     }
 
     override fun getItemCount(): Int {
@@ -34,5 +35,6 @@ class QRresultAdapter(private val qrList:ArrayList<QRdata>)
 
         val qrdata: TextView = itemView.findViewById(R.id.qrdataTV)
         val qrdate: TextView = itemView.findViewById(R.id.qrdateTV)
+        val qrseat: TextView = itemView.findViewById(R.id.qrseatTV)
     }
 }

@@ -4,44 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".SMSnotify">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/phonenumET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="100dp"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Notify Via SMS"
+                android:textSize="40sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <View
+                android:layout_width="111dp"
+                android:layout_height="0.5dp"
+                android:background="@color/black"
+                />
+            <View
+                android:layout_width="111dp"
+                android:layout_height="0.5dp"
+                android:background="@color/black"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/messageET"
-        android:layout_width="212dp"
-        android:layout_height="92dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="244dp"
-        android:lines="5"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Type a Message"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phonenumET"
-        app:layout_constraintVertical_bias="0.581" />
 
-    <Button
-        android:id="@+id/sendsmsbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="send sms"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageET" />
+            <EditText
+                android:id="@+id/phonenumET"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:hint="Phone Number (09XXXXXXXXX)"
+                android:background="@drawable/edit"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/messageET"
+                android:layout_width="370dp"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:gravity="center_horizontal"
+                android:hint="Type Message Here"
+                android:background="@drawable/edit"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sendsmsbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:background="@drawable/edit"
+            android:layout_gravity="right"
+            android:layout_marginRight="40dp"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

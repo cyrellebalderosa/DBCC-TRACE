@@ -22,39 +22,38 @@
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            android:text="Hello"
-
+            android:text="Hello!"
             android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
         <TextView
             android:id="@+id/textUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginTop="68dp"
             android:fontFamily="cursive"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="15dp"
-
+            android:layout_marginStart="30dp"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/texthello"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <TextView
             android:id="@+id/imagemenu"
-            android:layout_width="30dp"
+            android:layout_width="75dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="24dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_baseline_menu_24"
+            android:text="Logout"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/texthello"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/texthello"
-             />
+            app:layout_constraintVertical_bias="0.25" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,7 +64,8 @@
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutheader"
-        >
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-38dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -135,37 +135,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/seat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_bg"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintEnd_toStartOf="@id/layoutnotify"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutqrcode">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/seat" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/seat"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
             <LinearLayout
                 android:id="@+id/notes"
                 android:layout_width="0dp"
@@ -176,8 +146,8 @@
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintStart_toEndOf="@id/layoutqrcode"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/layoutqrcode"
                 app:layout_constraintTop_toBottomOf="@id/layoutnotify">
 
                 <ImageView
@@ -211,7 +181,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/layoutnotify"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/seat">
+                app:layout_constraintTop_toBottomOf="@id/layoutqrcode">
 
                 <ImageView
                     android:layout_width="100dp"
@@ -232,8 +202,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/profile"
-                android:layout_width="0dp"
+
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:background="@drawable/white_rectangle_bg"
@@ -241,11 +211,12 @@
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintStart_toEndOf="@id/layoutqrcode"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/layoutqrcode"
                 app:layout_constraintTop_toBottomOf="@id/notes">
 
                 <ImageView
+                    android:id="@+id/profile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
@@ -262,6 +233,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

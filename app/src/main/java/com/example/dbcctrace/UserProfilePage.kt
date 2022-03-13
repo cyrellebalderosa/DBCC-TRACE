@@ -44,6 +44,7 @@ class UserProfilePage : AppCompatActivity() {
     private lateinit var dialog: Dialog
     private lateinit var user: UsersDB
     private lateinit var id: String
+    private lateinit var username: String
     private lateinit var imageUri: Uri
 
 
@@ -70,8 +71,10 @@ class UserProfilePage : AppCompatActivity() {
 
 
 
+
         databaseReference = FirebaseDatabase.getInstance().getReference("users")
         if (id.isNotEmpty()){
+
 
             getUserData()
 
@@ -107,11 +110,13 @@ class UserProfilePage : AppCompatActivity() {
     private fun getUserData() {
         showProgressBar()
 
+
+
         databaseReference.child(id).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 user = snapshot.getValue(UsersDB::class.java)!!
-                binding.fullnametv.setText(user.Firstname +" "+ user.Lastname)
+                binding.fullnametv.setText(user.Firstname)
                 binding.gendertv.setText(user.Gender)
                 binding.emailtv.setText(user.Email)
                 binding.agetv.setText(user.Age)
@@ -196,7 +201,7 @@ class UserProfilePage : AppCompatActivity() {
         }.addOnFailureListener {
 
             hideProgressBar()
-            Toast.makeText(this@UserProfilePage, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this@UserProfilePage, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
 
 
         }

@@ -72,22 +72,47 @@ class UpdateUserProfile : AppCompatActivity() {
 
         savebtn.setOnClickListener {
 
-            //val email = binding.emailET.text.toString()
-            val firstname = binding.firstnameET.text.toString()
-            val lastname = binding.lastnameET.text.toString()
-            val age = binding.ageET.text.toString()
-            val gender = binding.genderET.text.toString()
-            val address = binding.addressET.text.toString()
-            val cpnum = binding.cpnumET.text.toString()
+            validateData()
 
+        }
+
+
+        }
+
+    private fun validateData(){
+        val firstname = binding.firstnameET.text.toString()
+        val lastname = binding.lastnameET.text.toString()
+        val age = binding.ageET.text.toString()
+        val gender = binding.genderET.text.toString()
+        val address = binding.addressET.text.toString()
+        val cpnum = binding.cpnumET.text.toString()
+
+        if (firstname.isEmpty() || lastname.isEmpty() || age.isEmpty() || gender.isEmpty() || address.isEmpty() || cpnum.isEmpty()){
+
+            //no data entered
+            binding.firstnameET.error = "Please enter data"
+            binding.lastnameET.error = "Please enter data"
+            binding.ageET.error = "Please enter data"
+            binding.addressET.error = "Please enter data"
+            binding.genderET.error = "Please enter data"
+            binding.cpnumET.error = "Please enter data"
+
+            Toast.makeText(this, "All Fields Required", Toast.LENGTH_SHORT).show()
+        }
+
+
+        else{
 
             updateData(firstname,lastname,age,gender,address,cpnum)
         }
 
 
-        }
+    }
 
     private fun updateData(firstname: String, lastname: String, age: String, gender: String, address: String, cpnum: String) {
+
+
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users")
         val user = mapOf<String,String>(
@@ -109,6 +134,8 @@ class UpdateUserProfile : AppCompatActivity() {
             binding.cpnumET.text.clear()
 
             Toast.makeText(this@UpdateUserProfile, "Successfully Updated Profile data", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, UserProfilePage::class.java))
+
 
 
         }.addOnFailureListener {

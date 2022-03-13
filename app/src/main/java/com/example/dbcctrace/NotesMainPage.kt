@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 class NotesMainPage : AppCompatActivity() {
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes_main_page)

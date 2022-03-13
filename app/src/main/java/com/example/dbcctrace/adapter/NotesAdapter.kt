@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbcctrace.databinding.ItemRvNotesBinding
-import com.example.dbcctrace.entities.Notes
+import com.example.dbcctrace.NotesEntities.Notes
 
 class NotesAdapter() :
     RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {

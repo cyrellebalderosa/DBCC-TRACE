@@ -1,7 +1,7 @@
 package com.example.dbcctrace.dao
 
 import androidx.room.*
-import com.example.dbcctrace.entities.Notes
+import com.example.dbcctrace.NotesEntities.Notes
 
 @Dao
 interface NoteDao {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dbcctrace.AboutUsActivity.AboutUs
 import com.example.dbcctrace.databinding.ActivityAdminDashboardPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -58,8 +59,18 @@ class AdminDashboardPage : AppCompatActivity() {
         }
 
         binding.adminnotify.setOnClickListener {
-          //  startActivity(Intent(this, NotifyPage::class.java))
-            startActivity(Intent(this, AdminCloudNotifyPage::class.java))
+
+            startActivity(Intent(this, AdminNotifyButtonPage::class.java))
+        }
+
+        binding.adminaboutus.setOnClickListener {
+
+            startActivity(Intent(this, AboutUs::class.java))
+        }
+
+        binding.admingenerate.setOnClickListener {
+
+            startActivity(Intent(this, AdminGenerateQR::class.java))
         }
 
 

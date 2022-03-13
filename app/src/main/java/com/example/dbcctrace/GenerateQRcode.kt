@@ -17,11 +17,11 @@ class GenerateQRcode : AppCompatActivity() {
 
     private lateinit var binding: ActivityGenerateQRcodeBinding
     var currentDate:String? = null
-    private lateinit var datetime: TextView
+
     private lateinit var tvName: EditText
     private lateinit var tvAddress: EditText
     private lateinit var etTemp: EditText
-    private lateinit var tvSeat: TextView
+    private lateinit var eventTV: EditText
     private lateinit var ivQRCode: ImageView
     private lateinit var btngenerate: Button
     private val STORAGE_CODE = 1001
@@ -45,11 +45,11 @@ class GenerateQRcode : AppCompatActivity() {
 
 
         //init
-        datetime = findViewById(R.id.Datetv)
+
         tvName = findViewById(R.id.Nametv)
         tvAddress = findViewById(R.id.addressTV)
         etTemp = findViewById(R.id.etTemp)
-        tvSeat = findViewById(R.id.Seattv)
+        eventTV = findViewById(R.id.eventEt)
         ivQRCode = findViewById(R.id.ivQRCode)
         btngenerate = findViewById(R.id.btngenerate)
 
@@ -82,13 +82,6 @@ class GenerateQRcode : AppCompatActivity() {
         currentDate = sdf.format(Date())
 
 
-        binding.Datetv.text = currentDate
-
-
-
-
-
-
 
 
         btngenerate.setOnClickListener {
@@ -96,10 +89,14 @@ class GenerateQRcode : AppCompatActivity() {
            val temp = etTemp.text.toString().trim()
             val name = tvName.text.toString().trim()
             val address = tvAddress.text.toString().trim()
+            val event = eventTV.text.toString().trim()
 
 
-            val encodertemp = QRGEncoder("FullName: "+ name+ "\n"+ "temperature:"  +temp  + "\n"+ "Address: "+ "\n"+address + "\n"+ currentDate, QRGContents.Type.TEXT, 800)
+            val encodertemp = QRGEncoder("FullName: "+ name+ "\n"+ "temperature:"  +temp  + "\n"+ "Address: "+address + "\n" + "Event: "+event , QRGContents.Type.TEXT, 800)
             binding.ivQRCode.setImageBitmap(encodertemp.bitmap)
+
+
+
 
 
         }
@@ -107,13 +104,7 @@ class GenerateQRcode : AppCompatActivity() {
 
 
 
-
-
-
-
     }
-
-
 
 }
 

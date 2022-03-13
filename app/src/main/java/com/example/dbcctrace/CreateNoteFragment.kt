@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.example.dbcctrace.database.NotesDatabase
+import com.example.dbcctrace.NotesEntities.Notes
+import com.example.dbcctrace.Notesdatabase.NotesDatabase
 import com.example.dbcctrace.databinding.FragmentCreateNoteBinding
-import com.example.dbcctrace.entities.Notes
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*

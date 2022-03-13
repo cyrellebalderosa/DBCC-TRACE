@@ -240,6 +240,7 @@ class LogInPage : AppCompatActivity() {
         var Password = pass.text.toString().trim()
 
 
+
         if (Email.isEmpty() || Password.isEmpty() ){
             Toast.makeText(this, "All Fields Required", Toast.LENGTH_SHORT).show()
         }else {
@@ -282,13 +283,12 @@ class LogInPage : AppCompatActivity() {
                     list.add(value)
                 }
 
+
+
                 if (isemailexist)
                 {
                     Toast.makeText(this@LogInPage, "LogIn Successfully", Toast.LENGTH_SHORT).show()
                     showRegularUI()
-                }else{
-                    Toast.makeText(this@LogInPage, "", Toast.LENGTH_SHORT).show()
-
                 }
 
             }

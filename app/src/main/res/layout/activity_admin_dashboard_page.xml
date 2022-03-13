@@ -31,14 +31,14 @@
             android:id="@+id/textUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="68dp"
+            android:fontFamily="cursive"
+            android:layout_marginStart="30dp"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/adminname"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/adminlogout"
@@ -91,7 +91,7 @@
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
                     android:padding="8dp"
-                    android:src="@drawable/qrcode" />
+                    android:src="@drawable/iconscanner3" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -136,7 +136,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/seat"
+
+                android:id="@+id/adminaboutus"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -155,13 +156,13 @@
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
                     android:padding="8dp"
-                    android:src="@drawable/seat" />
+                    android:src="@drawable/aboutus" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/seat"
+                    android:text="@string/about_us"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -194,6 +195,40 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Records"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/white_rectangle_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/adminqrcode"
+                app:layout_constraintTop_toBottomOf="@id/adminrecords">
+
+                <ImageView
+                    android:id="@+id/admingenerate"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    android:src="@drawable/qrcode" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Generate QRcode"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />

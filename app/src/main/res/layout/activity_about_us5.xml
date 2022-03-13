@@ -7,6 +7,11 @@
     android:background="@drawable/bg"
     android:orientation="vertical"
     tools:context=".AboutUsActivity.AboutUs5">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -102,8 +107,10 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:src="@drawable/fblogo"
                 />
             <TextView
+                android:id="@+id/fblink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="https://www.facebook.com/dbccfamily"
@@ -146,8 +153,10 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:src="@drawable/gmaillogo"
                 />
             <TextView
+                android:id="@+id/gmaillink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="dbcc.trace@gmail.com"
@@ -192,6 +201,7 @@
                 android:layout_height="40dp"
                 android:src="@drawable/tracelogo"/>
             <TextView
+                android:id="@+id/weblink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="https://dbcctrace.wixsite.com/trace"
@@ -201,4 +211,5 @@
         </LinearLayout>
 
     </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
