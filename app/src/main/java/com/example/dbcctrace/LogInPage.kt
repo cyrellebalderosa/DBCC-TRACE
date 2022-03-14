@@ -2,7 +2,9 @@
 
 package com.example.dbcctrace
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -140,6 +142,21 @@ class LogInPage : AppCompatActivity() {
 
         }
 
+
+        binding.forgotpass.setOnClickListener {
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Forgot Password")
+            val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+            val username = view.findViewById<EditText>(R.id.et_username)
+            builder.setView(view)
+            builder.setPositiveButton("Reset", DialogInterface.OnClickListener { _, _ ->
+                forgotPassword(username)
+            })
+            builder.setNegativeButton("Close", DialogInterface.OnClickListener { _, _ ->  })
+            builder.show()
+        }
+
         //facebook configure/ handle click
         callbackManager = CallbackManager.Factory.create()
 
@@ -162,6 +179,27 @@ class LogInPage : AppCompatActivity() {
 
 
 
+
+    }
+
+    private fun forgotPassword(username : EditText) {
+
+
+        if (username.text.toString().isEmpty()) {
+            return
+                }
+
+        //validate data
+        if (!Patterns.EMAIL_ADDRESS.matcher(username.text.toString()).matches()) {
+            return
+        }
+
+        firebaseAuth.sendPasswordResetEmail(username.text.toString())
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful){
+                        Toast.makeText(this, "Email Sent!",
+                                Toast.LENGTH_SHORT).show()                    }
+                }
 
     }
 
@@ -320,10 +358,11 @@ class LogInPage : AppCompatActivity() {
                     progressDialog.dismiss()
 
                     //get user info
-                    if (userName.text.toString() == "dbcc.trace@gmail.com" && pass.text.toString() == "traceadmin"){
+                    if (userName.text.toString().trim() == "dbcc.trace@gmail.com" && pass.text.toString().trim() == "traceadmin"){
                         showAdminUI()
                     }else{
                         showRegularUI()
+
                     }
 
                     val user = firebaseAuth.currentUser

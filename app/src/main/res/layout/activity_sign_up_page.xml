@@ -156,6 +156,7 @@
 
                 <EditText
                     android:id="@+id/genderEt"
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit"

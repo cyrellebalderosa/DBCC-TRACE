@@ -89,6 +89,7 @@
                 android:background="@drawable/ic_delete"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="Delete      User" />
 
 
