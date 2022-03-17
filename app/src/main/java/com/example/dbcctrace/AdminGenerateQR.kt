@@ -24,7 +24,8 @@ class AdminGenerateQR : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_generate_qr)
+        binding = ActivityAdminGenerateQrBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
 

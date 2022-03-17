@@ -147,6 +147,7 @@ class LogInPage : AppCompatActivity() {
 
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Forgot Password")
+            builder.setTitle("(Reset Password link will be sent to your Email)")
             val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
             val username = view.findViewById<EditText>(R.id.et_username)
             builder.setView(view)
@@ -181,6 +182,9 @@ class LogInPage : AppCompatActivity() {
 
 
     }
+
+
+
 
     private fun forgotPassword(username : EditText) {
 
@@ -488,6 +492,8 @@ class LogInPage : AppCompatActivity() {
 
 
     }
+
+
 
 
 

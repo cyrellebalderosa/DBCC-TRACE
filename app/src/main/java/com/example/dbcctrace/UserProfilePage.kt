@@ -3,7 +3,6 @@
 package com.example.dbcctrace
 
 import android.app.Dialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -83,9 +82,6 @@ class UserProfilePage : AppCompatActivity() {
 
 
 
-        profilepic.setOnClickListener {
-            selectImage()
-        }
 
 
         logouttv.setOnClickListener {
@@ -137,55 +133,10 @@ class UserProfilePage : AppCompatActivity() {
     }
 
 
-    private fun selectImage(){
-
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-
-        startActivityForResult(intent, 100)
-    }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == 100 && resultCode ==  RESULT_OK)
-
-            imageUri = data?.data!!
-        binding.ProfilePic.setImageURI(imageUri)
-
-        uploadImage()
-        getUserProfilePic()
-    }
 
 
-    private fun uploadImage(){
-        val progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Uploading File.....")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
-
-
-         storageReference = FirebaseStorage.getInstance().getReference("image/"+firebaseAuth.currentUser?.uid+".jpg")
-
-        storageReference.putFile(imageUri).addOnSuccessListener {
-
-            Toast.makeText(this@UserProfilePage, "Successfully uploaded", Toast.LENGTH_SHORT).show()
-
-            if (progressDialog.isShowing) progressDialog.dismiss()
-
-            getUserProfilePic()
-
-        }.addOnFailureListener {
-
-            if (progressDialog.isShowing) progressDialog.dismiss()
-            Toast.makeText(this@UserProfilePage, "Failed to upload", Toast.LENGTH_SHORT).show()
-
-        }
-
-
-    }
 
 
     private fun getUserProfilePic(){
@@ -201,11 +152,15 @@ class UserProfilePage : AppCompatActivity() {
         }.addOnFailureListener {
 
             hideProgressBar()
-            //Toast.makeText(this@UserProfilePage, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@UserProfilePage, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
 
 
         }
     }
+
+
+
+
 
 
 

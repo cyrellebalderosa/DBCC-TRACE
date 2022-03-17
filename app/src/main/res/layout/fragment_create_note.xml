@@ -45,12 +45,11 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif-black"
         android:textStyle="bold"
-        android:hint="@string/notes_title"
+        android:hint="Note Title"
         android:inputType="text"
         android:maxLines="1"
         android:padding="@dimen/_10sdp"
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +105,6 @@
             android:maxLines="1"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
             android:textSize="@dimen/_12ssp" />
 
     </LinearLayout>
@@ -123,7 +121,6 @@
         android:inputType="textMultiLine"
         android:padding="@dimen/_10sdp"
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
