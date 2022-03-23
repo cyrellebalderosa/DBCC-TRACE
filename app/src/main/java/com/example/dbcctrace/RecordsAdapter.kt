@@ -6,8 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RecordsAdapter(private val userlist : ArrayList<UserItemsDb>)
+class RecordsAdapter(private val userlist : ArrayList<UserItemsDb>,
+                     private val listener: onItemClickListener)
     : RecyclerView.Adapter<RecordsAdapter.MyViewHolder>() {
+
+
 
 
 
@@ -36,7 +39,8 @@ class RecordsAdapter(private val userlist : ArrayList<UserItemsDb>)
     }
 
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    View.OnClickListener{
 
         val FirstName : TextView = itemView.findViewById(R.id.tvfirstName)
         val LastName : TextView = itemView.findViewById(R.id.tvlastName)
@@ -45,5 +49,19 @@ class RecordsAdapter(private val userlist : ArrayList<UserItemsDb>)
         val PhoneNum : TextView = itemView.findViewById(R.id.tvphonenum)
         //val id : TextView = itemView.findViewById(R.id.tvid)
 
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+    interface onItemClickListener{
+        fun onItemClick(position: Int): Boolean
     }
 }

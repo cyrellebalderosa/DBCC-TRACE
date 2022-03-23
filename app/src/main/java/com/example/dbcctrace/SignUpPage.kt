@@ -115,6 +115,7 @@ class SignUpPage : AppCompatActivity() {
         binding.signUpBtn1.setOnClickListener {
 
 
+
             firebaseSignUp()
 
         }
