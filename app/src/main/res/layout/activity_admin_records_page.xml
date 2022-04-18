@@ -2,35 +2,106 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context=".AdminRecordsPage">
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:scrollbars="none"
+        android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:scrollbars="vertical"
-        tools:ignore="MissingConstraints">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            tools:ignore="MissingConstraints">
 
-    <androidx.recyclerview.widget.RecyclerView
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="First name">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="50dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Last name">
+                </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="30dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:text="Age">
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="45dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:text="Address">
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="55dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:text="Phone Number">
+                    </TextView>
+
+
+                </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userlist"
-        android:layout_width="700dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:scrollbars="none"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-3dp"
-        tools:listitem="@layout/user_item_records" />
+        tools:listitem="@layout/user_item_records"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+        </ScrollView>
 
-    </ScrollView>
-    </HorizontalScrollView>
+
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

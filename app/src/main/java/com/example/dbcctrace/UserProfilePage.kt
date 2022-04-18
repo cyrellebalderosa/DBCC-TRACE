@@ -112,7 +112,7 @@ class UserProfilePage : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 user = snapshot.getValue(UsersDB::class.java)!!
-                binding.fullnametv.setText(user.Firstname)
+                binding.fullnametv.setText(user.Firstname + " "+ user.Lastname)
                 binding.gendertv.setText(user.Gender)
                 binding.emailtv.setText(user.Email)
                 binding.agetv.setText(user.Age)

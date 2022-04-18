@@ -41,121 +41,7 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
 
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_peson" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="    First Name"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/updatefirstnameET"
-                android:layout_width="213dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:textColor="@android:color/black"
-                android:textSize="18dp" />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_peson" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="    Last Name"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/updatelastnameET"
-                android:layout_width="213dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:textColor="@android:color/black"
-                android:textSize="18dp" />
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:background="@android:color/darker_gray" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_peson" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="    Gender"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/updategenderET"
-                android:layout_width="213dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:textColor="@android:color/black"
-                android:textSize="18dp" />
-
-
-        </LinearLayout>
 
 
         <View
@@ -187,14 +73,15 @@
                 android:layout_marginTop="5dp"
                 android:text="    Age"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/updateageET"
-                android:layout_width="286dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:hint="Enter new age"
                 android:textColor="@android:color/black"
                 android:textSize="18dp" />
 
@@ -230,13 +117,14 @@
                 android:layout_marginTop="5dp"
                 android:text="    Address"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/updateaddressET"
-                android:layout_width="213dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="Enter new address"
                 android:layout_marginLeft="25dp"
                 android:textColor="@android:color/black"
                 android:textSize="18dp" />
@@ -273,14 +161,14 @@
                 android:layout_marginTop="5dp"
                 android:text="    Contact Number"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/updatecpnumET"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:hint="Enter new Phone number"
                 android:layout_marginLeft="25dp"
                 android:textColor="@android:color/black"
                 android:textSize="18dp" />
@@ -299,13 +187,16 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            >
 
             <Button
                 android:id="@+id/updatebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/green"
+                android:layout_marginTop="10dp"
                 android:text="Update"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
@@ -316,7 +207,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:background="@color/green"
-                android:text="Delete"
+                android:layout_marginTop="10dp"
+                android:text="Delete User"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
@@ -8,26 +8,19 @@
     android:layout_margin="5dp">
 
     <LinearLayout
-        android:layout_width="1000dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
 
 
-                 <TextView
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="First Name: "
-            android:textColor="@color/black"
-                     android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+
                 <TextView
                     android:id="@+id/tvfirstName"
                 android:layout_width="140dp"
@@ -38,13 +31,7 @@
 
                 android:textSize="20sp"/>
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Last Name: "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+
 
             <TextView
                 android:id="@+id/tvlastName"
@@ -55,16 +42,7 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="Age: "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/tvage"
@@ -74,50 +52,37 @@
                 android:text="20"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="Address: "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+
+
+
 
             <TextView
                 android:id="@+id/tvaddress"
-                android:layout_width="70dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="address"
+                android:text="sorsogon city pilar"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="PhoneNum: "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvphonenum"
-                android:layout_width="70dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="address"
+                android:text="09876543212"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
 
 
         </LinearLayout>
 
+
+
     </LinearLayout>
+
+    
 
 
 </androidx.cardview.widget.CardView>

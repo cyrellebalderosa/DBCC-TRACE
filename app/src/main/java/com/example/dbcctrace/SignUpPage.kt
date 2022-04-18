@@ -255,7 +255,9 @@ class SignUpPage : AppCompatActivity() {
         if (requestCode == 100 && resultCode ==  RESULT_OK)
 
             imageUri = data?.data!!
-        binding.signupProfilePic.setImageURI(imageUri)
+            binding.signupProfilePic.setImageURI(imageUri)
+
+
 
         //uploadImage()
 
@@ -263,8 +265,6 @@ class SignUpPage : AppCompatActivity() {
 
 
     private fun uploadImage(){
-
-
 
         storageReference = FirebaseStorage.getInstance().getReference("image/"+firebaseAuth.currentUser?.uid+".jpg")
 

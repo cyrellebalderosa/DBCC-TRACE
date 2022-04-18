@@ -149,10 +149,8 @@ class AdminRecordsPage : AppCompatActivity(),
         val view = inflater.inflate(R.layout.update_dialog, null)
         mDialog.setView(view)
 
-        val updateFirstnameET = view.findViewById<EditText>(R.id.updatefirstnameET)
-        val updatelastnameET = view.findViewById<EditText>(R.id.updatelastnameET)
+
         val updateageET = view.findViewById<EditText>(R.id.updateageET)
-        val updategenderET = view.findViewById<EditText>(R.id.updategenderET)
         val updateaddressET = view.findViewById<EditText>(R.id.updateaddressET)
         val updatecpnumET = view.findViewById<EditText>(R.id.updatecpnumET)
         val updatebtn = view.findViewById<Button>(R.id.updatebtn)
@@ -173,15 +171,13 @@ class AdminRecordsPage : AppCompatActivity(),
         updatebtn.setOnClickListener {
             //update data in database
 
-            val firstname = updateFirstnameET.text.toString()
-            val lastname = updatelastnameET.text.toString()
+
             val age = updateageET.text.toString()
-            val gender = updategenderET.text.toString()
             val address = updateaddressET.text.toString()
             val cpnum = updatecpnumET.text.toString()
 
 
-                updateData(id!!,firstname,lastname,age,gender,address,cpnum)
+                updateData(id!!,age,address,cpnum)
 
 
             Toast.makeText(this,"record updated", Toast.LENGTH_SHORT).show()
@@ -207,16 +203,13 @@ class AdminRecordsPage : AppCompatActivity(),
 
     }
 
-    private fun updateData(id: String, firstname: String, lastname: String, age: String, gender: String, address: String, cpnum: String){
+    private fun updateData(id: String, age: String, address: String, cpnum: String){
 
 
         dbref = FirebaseDatabase.getInstance().getReference("users")
 
         val updateduser = mapOf<String,String>(
-                "firstname" to firstname,
-                "lastname" to lastname,
                 "age" to age,
-                "gender" to gender,
                 "address" to address,
                 "phoneNum" to cpnum
         )
@@ -244,8 +237,6 @@ class AdminRecordsPage : AppCompatActivity(),
     }
 
     override fun onItemClick(position: Int): Boolean {
-
-        Toast.makeText(this,"item click $position", Toast.LENGTH_SHORT).show()
 
         val user = userArrayList[position]
         showUpdateDialog(user.id, user.Firstname)
