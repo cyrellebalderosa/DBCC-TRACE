@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 
 class NotesMainPage : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes_main_page)
@@ -15,7 +14,6 @@ class NotesMainPage : AppCompatActivity() {
         replaceFragment(HomeFragment.newInstance(),false)
 
     }
-
 
     fun replaceFragment(fragment: Fragment, istransition:Boolean){
         val fragmentTransition = supportFragmentManager.beginTransaction()
@@ -33,8 +31,6 @@ class NotesMainPage : AppCompatActivity() {
             finish()
         }
     }
-
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed() //go back to previous activity, when back button of actionbar is clicked
         return super.onSupportNavigateUp()
