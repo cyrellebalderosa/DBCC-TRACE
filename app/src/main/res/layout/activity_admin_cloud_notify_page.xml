@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AdminCloudNotifyPage">
 
-
-
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Notifyuserlist"
         android:layout_width="0dp"
@@ -19,6 +15,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/notify_user_list" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
