@@ -34,7 +34,6 @@
                 style="@style/TextAppearance.MaterialComponents.Headline6"
                 />
 
-
             <TextView
                 android:id="@+id/tvdesc"
                 android:layout_width="match_parent"
@@ -49,8 +48,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:fontFamily="@font/futurabookfont"
                 />
-
-
 
             <TextView
             android:id="@+id/tvdatetime"
