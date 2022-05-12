@@ -22,7 +22,6 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-
 class SignUpPage : AppCompatActivity() {
 
     //view binding
@@ -39,9 +38,6 @@ class SignUpPage : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
 
-
-
-
     private lateinit var storageReference: StorageReference
     private lateinit var dialog: Dialog
     private lateinit var user: UsersDB
@@ -49,7 +45,6 @@ class SignUpPage : AppCompatActivity() {
     private lateinit var username: String
     private lateinit var imageUri: Uri
     private lateinit var signupProfilePic: ImageView
-
 
     private var email = ""
     private var password = ""
@@ -62,19 +57,10 @@ class SignUpPage : AppCompatActivity() {
     private lateinit var pass: EditText
     private lateinit var gender: EditText
 
-
-
-
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         //configure actionbar,    //enable back button
         actionBar = supportActionBar!!
@@ -95,9 +81,6 @@ class SignUpPage : AppCompatActivity() {
         databaseReference = database.getReference("users")
         id = firebaseAuth.currentUser?.uid.toString()
 
-
-
-
         userName = findViewById(R.id.emailEt)
         pass = findViewById(R.id.passwordEt)
         fname = findViewById(R.id.firstnameEt)
@@ -109,28 +92,18 @@ class SignUpPage : AppCompatActivity() {
         gender = findViewById(R.id.genderEt)
         signupProfilePic = findViewById(R.id.signupProfilePic)
 
-
         //handle click, begin signup
 
         binding.signUpBtn1.setOnClickListener {
 
-
-
             firebaseSignUp()
-
         }
 
         signupProfilePic.setOnClickListener {
             selectImage()
         }
 
-
-
-
     }
-
-
-
 
     private fun signUp(){
         var Firstname = fname.text.toString().trim()
@@ -141,7 +114,6 @@ class SignUpPage : AppCompatActivity() {
         var Email = userName.text.toString().trim()
         var Password = pass.text.toString().trim()
         var Gender = gender.text.toString().trim()
-
         val uid = firebaseAuth.currentUser?.uid
 
         if (userName.text.toString() == "dbcc.trace@gmail.com" && pass.text.toString() == "traceadmin"){
@@ -149,8 +121,6 @@ class SignUpPage : AppCompatActivity() {
         }else{
             showRegularUI()
         }
-
-
 
         if (Email.isEmpty() || Password.isEmpty() || Firstname.isEmpty() || Lastname.isEmpty()){
             Toast.makeText(this@SignUpPage, "All Fields Required", Toast.LENGTH_SHORT).show()
@@ -163,12 +133,9 @@ class SignUpPage : AppCompatActivity() {
                 if (uid != null) {
                     var model = UsersDB(Firstname, Lastname, Age, Address, PhoneNum, Email, Password, Gender, userId)
 
-
                     //DATA INSERT HERE TO DATABASE
                     databaseReference.child(uid).setValue(model)
                     Toast.makeText(this@SignUpPage, "SignUp successfull", Toast.LENGTH_SHORT).show()
-
-
 
                     showRegularUI()
 
@@ -176,20 +143,14 @@ class SignUpPage : AppCompatActivity() {
                     Toast.makeText(this@SignUpPage, "Check you email", Toast.LENGTH_SHORT).show()
 
                 }
-
-
             }
         }
-
-
-
     }
 
     private fun isValidEmail(email: String): Boolean{
         val pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
     }
-
 
     private fun firebaseSignUp() {
         //show progress
@@ -198,21 +159,17 @@ class SignUpPage : AppCompatActivity() {
         var Email = userName.text.toString().trim()
         var Password = pass.text.toString().trim()
 
-
-
         //create account
         firebaseAuth.createUserWithEmailAndPassword(Email, Password)
                 .addOnSuccessListener {
                     //signup successful
                     progressDialog.dismiss()
 
-
                     if (userName.text.toString() == "dbcc.trace@gmail.com" && pass.text.toString() == "traceadmin"){
                         showAdminUI()
                     }else{
                         showRegularUI()
                     }
-
 
                     //get current user
                     val firebaseUser = firebaseAuth.currentUser
@@ -222,8 +179,6 @@ class SignUpPage : AppCompatActivity() {
 
                     //save data to firebase database
                     signUp()
-
-
 
                     //Firebase messageing Token
                     retrieveAndSToreToken()
@@ -236,9 +191,6 @@ class SignUpPage : AppCompatActivity() {
                 }
     }
 
-
-
-
     private fun selectImage(){
 
         val intent = Intent()
@@ -248,7 +200,6 @@ class SignUpPage : AppCompatActivity() {
         startActivityForResult(intent, 100)
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -257,12 +208,8 @@ class SignUpPage : AppCompatActivity() {
             imageUri = data?.data!!
             binding.signupProfilePic.setImageURI(imageUri)
 
-
-
         //uploadImage()
-
     }
-
 
     private fun uploadImage(){
 
@@ -272,22 +219,11 @@ class SignUpPage : AppCompatActivity() {
 
             Toast.makeText(this@SignUpPage, "Successfully uploaded", Toast.LENGTH_SHORT).show()
 
-
-
         }.addOnFailureListener {
 
-
             Toast.makeText(this@SignUpPage, "Failed to upload", Toast.LENGTH_SHORT).show()
-
         }
-
-
     }
-
-
-
-
-
 
     private fun  showProgressBar(){
 
@@ -297,18 +233,15 @@ class SignUpPage : AppCompatActivity() {
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
-
     private fun hideProgressBar(){
 
         dialog.dismiss()
     }
-
     private fun showRegularUI() {
         // Switches to admin (organizer) UI
         val intent = Intent(this@SignUpPage, UserDashboardPage::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK) // clears the stack (disables going back with back button)
         startActivity(intent)
-
         uploadImage()
     }
     private fun showAdminUI() {
@@ -317,7 +250,6 @@ class SignUpPage : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK) // clears the stack (disables going back with back button)
         startActivity(intent)
     }
-
     private fun retrieveAndSToreToken(){
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener { task ->
@@ -334,12 +266,8 @@ class SignUpPage : AppCompatActivity() {
                 }
             }
     }
-
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed() //go back to previous activity, when back button of actionbar is clicked
         return super.onSupportNavigateUp()
     }
-
-
 }
