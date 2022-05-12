@@ -35,8 +35,6 @@ class UserProfilePage : AppCompatActivity() {
     private lateinit var profilepic: ImageView
     private lateinit var editprofile:TextView
 
-
-
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
@@ -45,8 +43,6 @@ class UserProfilePage : AppCompatActivity() {
     private lateinit var id: String
     private lateinit var username: String
     private lateinit var imageUri: Uri
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,31 +60,21 @@ class UserProfilePage : AppCompatActivity() {
         profilepic = findViewById(R.id.ProfilePic)
         editprofile = findViewById(R.id.editprofile)
 
-
         firebaseAuth = FirebaseAuth.getInstance()
         id = firebaseAuth.currentUser?.uid.toString()
 
-
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference("users")
         if (id.isNotEmpty()){
-
-
+            
             getUserData()
 
-
         }
-
-
-
-
-
+        
         logouttv.setOnClickListener {
             firebaseAuth.signOut()
             startActivity(Intent(this, LogInPage::class.java))
         }
-
+        
         backbtn.setOnClickListener {
            onSupportNavigateUp()
         }
@@ -97,16 +83,10 @@ class UserProfilePage : AppCompatActivity() {
             startActivity(Intent(this, UpdateUserProfile::class.java))
         }
 
-
-
-
-
     }
 
     private fun getUserData() {
         showProgressBar()
-
-
 
         databaseReference.child(id).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -119,7 +99,6 @@ class UserProfilePage : AppCompatActivity() {
                 binding.addresstv.setText(user.Address)
                 binding.cpnumtv.setText(user.PhoneNum)
 
-
                 getUserProfilePic()
             }
 
@@ -131,13 +110,6 @@ class UserProfilePage : AppCompatActivity() {
 
         })
     }
-
-
-
-
-
-
-
 
     private fun getUserProfilePic(){
 
@@ -154,15 +126,8 @@ class UserProfilePage : AppCompatActivity() {
             hideProgressBar()
             Toast.makeText(this@UserProfilePage, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
 
-
         }
     }
-
-
-
-
-
-
 
     private fun  showProgressBar(){
 
@@ -177,7 +142,6 @@ class UserProfilePage : AppCompatActivity() {
 
         dialog.dismiss()
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed() //go back to previous activity, when back button of actionbar is clicked
