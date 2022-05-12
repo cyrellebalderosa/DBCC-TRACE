@@ -57,8 +57,6 @@
                         android:background="@color/black"
                         />
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -137,8 +135,6 @@
                     android:background="@drawable/edit"
                     android:gravity="center"
                     android:hint="Contact Number"/>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -185,8 +181,6 @@
                     android:gravity="center"
                     android:text="Please Use Gmail Account "
                     android:textColor="@color/white"></TextView>
-
-
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/signemail"
@@ -213,9 +207,6 @@
                         android:hint="Email">
 
                     </EditText>
-
-
-
                     <LinearLayout
                         android:id="@+id/signNumber"
                         android:layout_width="match_parent"
@@ -248,9 +239,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    app:passwordToggleEnabled="true"
-
-                    >
+                    app:passwordToggleEnabled="true">
 
                     <EditText
                         android:id="@+id/passwordEt"
@@ -264,7 +253,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
