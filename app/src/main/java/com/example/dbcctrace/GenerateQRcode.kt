@@ -14,7 +14,6 @@ import java.util.*
 @Suppress("DEPRECATION")
 class GenerateQRcode : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityGenerateQRcodeBinding
     var currentDate:String? = null
 
@@ -26,8 +25,6 @@ class GenerateQRcode : AppCompatActivity() {
     private lateinit var btngenerate: Button
     private val STORAGE_CODE = 1001
 
-
-
     //FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
@@ -35,15 +32,11 @@ class GenerateQRcode : AppCompatActivity() {
     private lateinit var id: String
     private lateinit var user: UsersDB
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGenerateQRcodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
-
+        
         //init
 
         tvName = findViewById(R.id.Nametv)
@@ -53,13 +46,9 @@ class GenerateQRcode : AppCompatActivity() {
         ivQRCode = findViewById(R.id.ivQRCode)
         btngenerate = findViewById(R.id.btngenerate)
 
-
-
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
         id = firebaseAuth.currentUser?.uid.toString()
-
-
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users")
 
@@ -76,13 +65,8 @@ class GenerateQRcode : AppCompatActivity() {
 
         })
 
-
-
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         currentDate = sdf.format(Date())
-
-
-
 
         btngenerate.setOnClickListener {
 
@@ -91,21 +75,11 @@ class GenerateQRcode : AppCompatActivity() {
             val address = tvAddress.text.toString().trim()
             val event = eventTV.text.toString().trim()
 
-
             val encodertemp = QRGEncoder("FullName: "+ name+ "\n"+ "temperature:"  +temp  + "\n"+ "Address: "+address + "\n" + "Event: "+event , QRGContents.Type.TEXT, 800)
             binding.ivQRCode.setImageBitmap(encodertemp.bitmap)
 
-
-
-
-
         }
-
-
-
 
     }
 
 }
-
-
