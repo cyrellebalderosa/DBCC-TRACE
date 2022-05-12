@@ -28,7 +28,6 @@ class EmailNotifyPage : AppCompatActivity() {
                 putExtra(Intent.EXTRA_EMAIL,addresses)
                 putExtra(Intent.EXTRA_SUBJECT,subject)
                 putExtra(Intent.EXTRA_TEXT,message)
-
             }
 
             if (intent.resolveActivity(packageManager) != null){
