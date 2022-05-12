@@ -1,5 +1,4 @@
 package com.example.dbcctrace
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +9,6 @@ class AdminNotifyButtonPage : AppCompatActivity() {
     //viewBinding
     private lateinit var binding: ActivityAdminNotifyButtonPageBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminNotifyButtonPageBinding.inflate(layoutInflater)
@@ -19,7 +17,6 @@ class AdminNotifyButtonPage : AppCompatActivity() {
         binding.smsbtn.setOnClickListener {
             startActivity(Intent(this, SMSnotify::class.java))
         }
-
         binding.cloudbtn.setOnClickListener {
             startActivity(Intent(this, AdminCloudNotifyPage::class.java))
         }
