@@ -26,22 +26,16 @@ class AdminRecordsPage : AppCompatActivity(),
     private lateinit var dialog: Dialog
     private val adapter = RecordsAdapter(userArrayList, this)
 
-
-
     //ActionBar
     private lateinit var actionBar: ActionBar
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_records_page)
 
-
         //configure actionbar
         actionBar = supportActionBar!!
         actionBar.title = "All User Records"
-
-
 
         userRecyclerview = findViewById(R.id.userlist)
         userRecyclerview.layoutManager = LinearLayoutManager(this)
@@ -98,13 +92,11 @@ class AdminRecordsPage : AppCompatActivity(),
         return super.onCreateOptionsMenu(menu)
     }
 */
-
     private fun getUserData() {
 
         showProgressBar()
 
         dbref = FirebaseDatabase.getInstance().getReference("users")
-
         dbref.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -112,8 +104,6 @@ class AdminRecordsPage : AppCompatActivity(),
                 if (snapshot.exists()){
 
                     for (userSnapshot in snapshot.children){
-
-
                         val user = userSnapshot.getValue(UserItemsDb::class.java)
                         userArrayList.add(user!!)
 
@@ -124,8 +114,6 @@ class AdminRecordsPage : AppCompatActivity(),
                     userRecyclerview.adapter = adapter
 
                     hideProgressBar()
-
-
                 }
 
             }
@@ -134,11 +122,7 @@ class AdminRecordsPage : AppCompatActivity(),
                 TODO("Not yet implemented")
             }
 
-
         })
-
-
-
 
     }
 
@@ -148,7 +132,6 @@ class AdminRecordsPage : AppCompatActivity(),
         val inflater = layoutInflater
         val view = inflater.inflate(R.layout.update_dialog, null)
         mDialog.setView(view)
-
 
         val updateageET = view.findViewById<EditText>(R.id.updateageET)
         val updateaddressET = view.findViewById<EditText>(R.id.updateaddressET)
@@ -164,28 +147,19 @@ class AdminRecordsPage : AppCompatActivity(),
 
             alertDialog.dismiss()
 
-
         }
-
 
         updatebtn.setOnClickListener {
             //update data in database
-
 
             val age = updateageET.text.toString()
             val address = updateaddressET.text.toString()
             val cpnum = updatecpnumET.text.toString()
 
-
                 updateData(id!!,age,address,cpnum)
-
-
             Toast.makeText(this,"record updated", Toast.LENGTH_SHORT).show()
             alertDialog.dismiss()
-
-
         }
-
     }
 
     private fun deleteRecord(id: String?) {
@@ -197,17 +171,12 @@ class AdminRecordsPage : AppCompatActivity(),
 
         }.addOnFailureListener {
                     Toast.makeText(this,"failed to delete", Toast.LENGTH_SHORT).show()
-
                 }
-
-
     }
 
     private fun updateData(id: String, age: String, address: String, cpnum: String){
 
-
         dbref = FirebaseDatabase.getInstance().getReference("users")
-
         val updateduser = mapOf<String,String>(
                 "age" to age,
                 "address" to address,
@@ -218,7 +187,6 @@ class AdminRecordsPage : AppCompatActivity(),
 
         }.addOnFailureListener {
             Toast.makeText(this,"failed to update", Toast.LENGTH_SHORT).show()
-
         }
     }
 
