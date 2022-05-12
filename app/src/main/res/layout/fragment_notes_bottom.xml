@@ -12,8 +12,6 @@
     android:background="@color/blue"
     tools:context=".NotesMainPage">
 
-
-
     <FrameLayout
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,9 +26,7 @@
             android:layout_height="@dimen/_24sdp"
             android:src="@drawable/ic_bar"/>
     </FrameLayout>
-
-
-
+    
     <LinearLayout
         android:id="@+id/layoutDeleteNote"
         android:layout_width="match_parent"
@@ -45,7 +41,6 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:orientation="horizontal">
-
 
         <ImageView
             android:layout_width="wrap_content"
