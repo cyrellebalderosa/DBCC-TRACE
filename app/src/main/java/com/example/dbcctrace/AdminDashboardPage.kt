@@ -1,5 +1,4 @@
 package com.example.dbcctrace
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
@@ -11,18 +10,14 @@ import com.google.firebase.database.FirebaseDatabase
 
 class AdminDashboardPage : AppCompatActivity() {
 
-
-
     //viewBinding
     private lateinit var binding: ActivityAdminDashboardPageBinding
-
     //ActionBar
     private lateinit var actionBar: ActionBar
     //private lateinit var logout: TextView
 
     //FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +31,7 @@ class AdminDashboardPage : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
 
-
         //logout = findViewById(R.id.adminlogout)
-
 
         binding.adminlogout.setOnClickListener {
             clearToken(FirebaseAuth.getInstance().currentUser!!.uid)
@@ -72,10 +65,7 @@ class AdminDashboardPage : AppCompatActivity() {
             startActivity(Intent(this, AdminGenerateQR::class.java))
         }
 
-
-
     }
-
 
     private fun clearToken(userId: String){
         FirebaseDatabase
@@ -101,11 +91,8 @@ class AdminDashboardPage : AppCompatActivity() {
         }
     }
 
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed() //go back to previous activity, when back button of actionbar is clicked
         return super.onSupportNavigateUp()
     }
-   
-
 }
