@@ -15,7 +15,6 @@ class QRcodeResult : AppCompatActivity() {
     private lateinit var qrRecyclerview: RecyclerView
     private lateinit var qrArrayList : ArrayList<QRdata>
 
-
     //ActionBar
     private lateinit var actionBar: ActionBar
 
@@ -23,7 +22,6 @@ class QRcodeResult : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityQrCodeResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         //configure actionbar
         actionBar = supportActionBar!!
@@ -39,23 +37,15 @@ class QRcodeResult : AppCompatActivity() {
 
     }
 
-
-
-
     private fun getQRdata() {
 
-
-
         dbref = FirebaseDatabase.getInstance().getReference("QRdata")
-
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 if (snapshot.exists()){
 
                     for (userSnapshot in snapshot.children){
-
-
                         val user = userSnapshot.getValue(QRdata::class.java)
                         qrArrayList.add(user!!)
                     }
@@ -63,7 +53,6 @@ class QRcodeResult : AppCompatActivity() {
                     qrRecyclerview.adapter = QRresultAdapter(qrArrayList)
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
