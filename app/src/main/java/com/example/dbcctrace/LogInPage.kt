@@ -34,7 +34,6 @@ import kotlin.collections.ArrayList
 @Suppress("DEPRECATION", "NAME_SHADOWING")
 class LogInPage : AppCompatActivity() {
 
-
     //viewBinding
     private lateinit var binding: ActivityLogInPageBinding
 
@@ -51,10 +50,8 @@ class LogInPage : AppCompatActivity() {
     //ActionBar
     private lateinit var actionBar: ActionBar
 
-
     //ProgressDialog
     private lateinit var progressDialog: ProgressDialog
-
 
     //Declare FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
@@ -72,12 +69,6 @@ class LogInPage : AppCompatActivity() {
     private lateinit var userName: EditText
     private lateinit var pass: EditText
 
-
-
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInPageBinding.inflate(layoutInflater)
@@ -90,7 +81,6 @@ class LogInPage : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
 
         //initialize firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
@@ -105,17 +95,14 @@ class LogInPage : AppCompatActivity() {
         actionBar = supportActionBar!!
         actionBar.title = "Login"
 
-
         //configure progress dialog
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please wait")
         progressDialog.setMessage("Logging In..")
         progressDialog.setCanceledOnTouchOutside(false)
 
-
         userName = findViewById(R.id.emailEt)
         pass = findViewById(R.id.passwordEt)
-
 
         //handle click, to begin google SignIn
         binding.googleSignInBtn.setOnClickListener {
@@ -123,8 +110,6 @@ class LogInPage : AppCompatActivity() {
             Log.d(TAG, "onCreate: begin Google SignIn")
             val intent = googleSignInClient.signInIntent
             startActivityForResult(intent, RC_SIGN_IN)
-
-
         }
 
         //handle click, open SignUpActivity
@@ -138,9 +123,7 @@ class LogInPage : AppCompatActivity() {
             //before logging in, validate data
            validateData()
 
-
         }
-
 
         binding.forgotpass.setOnClickListener {
 
@@ -177,36 +160,23 @@ class LogInPage : AppCompatActivity() {
 
         })
         */
-
-
-
-
-
-
     }
 
-
-
-
     private fun forgotPassword(username : EditText) {
-
 
         if (username.text.toString().isEmpty()) {
             return
                 }
-
         //validate data
         if (!Patterns.EMAIL_ADDRESS.matcher(username.text.toString()).matches()) {
             return
         }
-
         firebaseAuth.sendPasswordResetEmail(username.text.toString())
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful){
                         Toast.makeText(this, "Email Sent!",
                                 Toast.LENGTH_SHORT).show()                    }
                 }
-
     }
 
     //start on activity result
@@ -231,7 +201,6 @@ class LogInPage : AppCompatActivity() {
         callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
-
     private fun handleFacebookAccessToken(token: AccessToken) {
         Log.d(TAG, "handleFacebookAccessToken:$token")
 
@@ -254,9 +223,6 @@ class LogInPage : AppCompatActivity() {
             }
     }
 
-
-
-
     private fun validateData() {
         //get data
         email = binding.emailEt.text.toString().trim()
@@ -276,14 +242,10 @@ class LogInPage : AppCompatActivity() {
         }
     }
 
-
-
     private fun login(){
 
         var Email = userName.text.toString().trim()
         var Password = pass.text.toString().trim()
-
-
 
         if (Email.isEmpty() || Password.isEmpty() ){
             Toast.makeText(this, "All Fields Required", Toast.LENGTH_SHORT).show()
@@ -300,18 +262,13 @@ class LogInPage : AppCompatActivity() {
             }
         }
     }
-
     private fun isEmailExist(email: String, password: String)
     {
-
         databaseReference.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(datasnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-
-
-
 
                 var list = ArrayList<UsersDB>()
                 var isemailexist = false
@@ -326,8 +283,6 @@ class LogInPage : AppCompatActivity() {
 
                     list.add(value)
                 }
-
-
 
                 if (isemailexist)
                 {
@@ -344,16 +299,10 @@ class LogInPage : AppCompatActivity() {
         })
     }
 
-
-
-
-
     private fun isValidEmail(email: String): Boolean{
         val pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
     }
-
-
 
     private fun firebaseLogin() {
         //show progress
@@ -388,9 +337,6 @@ class LogInPage : AppCompatActivity() {
                 }
     }
 
-
-
-
     private fun showAdminUI() {
         // Switches to admin (organizer) UI
         val intent = Intent(this@LogInPage, AdminDashboardPage::class.java)
@@ -398,14 +344,12 @@ class LogInPage : AppCompatActivity() {
         startActivity(intent)
     }
 
-
     private fun showRegularUI() {
         // Switches to admin (organizer) UI
         val intent = Intent(this@LogInPage, UserDashboardPage::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK) // clears the stack (disables going back with back button)
         startActivity(intent)
     }
-
 
     private fun retrieveAndSToreToken(){
         FirebaseMessaging.getInstance().token
@@ -424,7 +368,6 @@ class LogInPage : AppCompatActivity() {
             }
     }
 
-
 /**
     private fun CheckUser() {
        // if user is already logged in go to profile activity
@@ -441,8 +384,6 @@ class LogInPage : AppCompatActivity() {
         }
     }
 */
-
-
 
     // START auth with google
     private fun firebaseAuthwithGoogleAccount(account: GoogleSignInAccount?) {
@@ -470,45 +411,27 @@ class LogInPage : AppCompatActivity() {
                         Log.d(TAG, "firebaseAuthwithGoogleAccount: Account Created... \n$email")
                         Toast.makeText(this@LogInPage, "Account created... \n $email", Toast.LENGTH_SHORT).show()
 
-
                     }
 
                     else{
                         //existing user LoggedIn
                         Log.d(TAG, "firebaseAuthwithGoogleAccount: Existing user... \n$email")
                         Toast.makeText(this@LogInPage, "LoggedIn... \n $email", Toast.LENGTH_SHORT).show()
-
                     }
                     //start dashboard activity
                     startActivity(Intent(this@LogInPage , UserDashboardPage::class.java))
                     finish()
-
                 }
                 .addOnFailureListener { e ->
                     //login Failed
                     Log.d(TAG, "firebaseAuthwithGoogleAccount: LogIn failed due to ${e.message}")
                     Toast.makeText(this@LogInPage, "LogIn failed due to ${e.message}", Toast.LENGTH_SHORT).show()
-
                 }
         //END auth with google
 
-
     }
-
-
-
-
-
-
-
-
-
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed() //go back to previous activity, when back button of actionbar is clicked
         return super.onSupportNavigateUp()
     }
-
 }
-
-
