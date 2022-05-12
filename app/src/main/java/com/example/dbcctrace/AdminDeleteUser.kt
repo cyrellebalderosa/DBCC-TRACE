@@ -1,5 +1,4 @@
 package com.example.dbcctrace
-
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +10,6 @@ import com.google.firebase.database.FirebaseDatabase
 class AdminDeleteUser : AppCompatActivity() {
 
     private lateinit var binding: ActivityAdminDeleteUserBinding
-
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -20,11 +18,9 @@ class AdminDeleteUser : AppCompatActivity() {
         binding = ActivityAdminDeleteUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
        // val uid = firebaseAuth.currentUser?.uid
 
         binding.deletebtn.setOnClickListener {
-
 
             var id = binding.deleteET.text.toString()
             if (id.isNotEmpty())
@@ -33,7 +29,6 @@ class AdminDeleteUser : AppCompatActivity() {
                 Toast.makeText(this, "Please enter id of user", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     private fun deleteData(id: String){
 
