@@ -7,7 +7,6 @@
     android:background="@color/gray"
     tools:context=".NotesMainPage">
 
-
     <ImageView
         android:id="@+id/imgBack"
         android:layout_width="wrap_content"
@@ -20,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/black" />
 
-
     <ImageView
         android:id="@+id/imgDone"
         android:layout_width="wrap_content"
@@ -32,9 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/black" />
-
-
-
 
     <EditText
         android:id="@+id/etNoteTitle"
@@ -55,7 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgBack" />
 
-
     <TextView
         android:id="@+id/tvDateTime"
         android:layout_width="match_parent"
@@ -75,7 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etNoteTitle" />
-
 
     <LinearLayout
         android:id="@+id/l1"
@@ -109,7 +102,6 @@
 
     </LinearLayout>
 
-
     <EditText
         android:id="@+id/etNoteDesc"
         android:layout_width="match_parent"
@@ -125,7 +117,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l1" />
-
 
     <FrameLayout
         android:layout_width="match_parent"
