@@ -47,7 +47,6 @@
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
-
             <EditText
                 android:id="@+id/phonenumET"
                 android:layout_width="match_parent"
