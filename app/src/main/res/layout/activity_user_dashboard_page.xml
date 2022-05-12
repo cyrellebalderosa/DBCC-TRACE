@@ -43,7 +43,6 @@
             app:layout_constraintStart_toEndOf="@+id/texthello"
             app:layout_constraintTop_toTopOf="parent"/>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -71,8 +70,6 @@
                 app:layout_constraintDimensionRatio="H, 1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-
 
                 <ImageView
                     android:layout_width="100dp"
@@ -105,7 +102,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutqrcode"
                 app:layout_constraintTop_toTopOf="parent">
-
 
                 <ImageView
                     android:layout_width="100dp"
@@ -140,8 +136,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutqrcode">
 
-
-
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -157,7 +151,6 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
-
             </LinearLayout>
 
             <LinearLayout
@@ -174,8 +167,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutnotify">
 
-
-
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -191,7 +182,6 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
-
             </LinearLayout>
 
             <LinearLayout
@@ -208,8 +198,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/aboutus">
 
-
-
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -225,7 +213,6 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
-
             </LinearLayout>
 
             <LinearLayout
@@ -242,7 +229,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/notes">
 
-
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -258,7 +244,6 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
-
             </LinearLayout>
 
 
