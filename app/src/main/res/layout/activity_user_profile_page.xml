@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context=".UserProfilePage">
 
-
   <include layout="@layout/toolbar"/>
 
   <LinearLayout
@@ -20,7 +19,6 @@
       android:paddingTop="15dp"
       android:backgroundTint="@color/white"
       android:orientation="vertical">
-
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/ProfilePic"
@@ -46,8 +44,6 @@
         android:layout_marginTop="20dp"
         android:gravity="center_vertical">
 
-
-
       <ImageView
           android:layout_width="30dp"
           android:layout_height="30dp"
@@ -69,13 +65,9 @@
           android:layout_height="wrap_content"
           android:layout_marginLeft="25dp"
           android:textColor="@android:color/black"
-          android:textSize="18dp"
-          />
-
-
+          android:textSize="18dp"/>
 
     </LinearLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
@@ -91,8 +83,6 @@
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical">
-
-
 
       <ImageView
           android:layout_width="30dp"
@@ -116,8 +106,6 @@
           android:textColor="@android:color/black"
           android:textSize="18dp" />
 
-
-
     </LinearLayout>
 
     <View
@@ -136,7 +124,6 @@
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical">
-
 
       <ImageView
           android:layout_width="30dp"
@@ -161,7 +148,6 @@
           android:textColor="@android:color/black"
           android:textSize="18dp" />
 
-
     </LinearLayout>
 
     <View
@@ -180,7 +166,6 @@
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical">
-
 
       <ImageView
           android:layout_width="wrap_content"
@@ -204,8 +189,6 @@
           android:textColor="@android:color/black"
           android:textSize="18dp" />
 
-
-
     </LinearLayout>
 
     <View
@@ -223,8 +206,6 @@
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical">
-
-
 
       <ImageView
           android:layout_width="30dp"
@@ -247,8 +228,6 @@
           android:textSize="18dp"
           android:textColor="@android:color/black"/>
 
-
-
     </LinearLayout>
 
     <View
@@ -258,7 +237,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -267,8 +245,6 @@
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical">
-
-
 
       <ImageView
           android:layout_width="30dp"
@@ -291,8 +267,6 @@
           android:layout_marginLeft="25dp"
           android:textSize="18dp"
           android:textColor="@android:color/black"/>
-
-
 
     </LinearLayout>
 
