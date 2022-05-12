@@ -16,7 +16,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dbcctrace.databinding.ActivityLogInPageBinding
 import com.facebook.*
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -160,6 +159,7 @@ class LogInPage : AppCompatActivity() {
         //facebook configure/ handle click
         callbackManager = CallbackManager.Factory.create()
 
+        /**
         binding.fbloginBtn.setPermissions("email")
         binding.fbloginBtn.setReadPermissions("email","public_profile")
         binding.fbloginBtn.registerCallback(callbackManager, object :FacebookCallback<LoginResult>{
@@ -176,6 +176,9 @@ class LogInPage : AppCompatActivity() {
             }
 
         })
+        */
+
+
 
 
 

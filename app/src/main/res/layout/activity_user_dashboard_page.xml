@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBackground"
     android:layout_height="match_parent"
@@ -12,9 +11,10 @@
         android:id="@+id/layoutheader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:background="@drawable/header_background"
+        android:padding="10dp"
         app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/texthello"
             android:layout_width="wrap_content"
@@ -25,49 +25,36 @@
             android:text="Hello!"
             android:textColor="@color/white"
             android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-
         <TextView
             android:id="@+id/textUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
-            android:fontFamily="cursive"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="15dp"
+            android:text = "Jp"
             android:textColor="@color/white"
             android:textSize="25sp"
+            android:fontFamily="cursive"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/texthello"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/imagemenu"
-            android:layout_width="75dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="24dp"
-            android:contentDescription="@string/app_name"
-            android:text="Logout"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/texthello"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/texthello"
-            app:layout_constraintVertical_bias="0.25" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:overScrollMode="never"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutheader"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-38dp">
+        app:layout_constraintTop_toBottomOf="@id/layoutheader">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -77,13 +64,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:background="@drawable/white_rectangle_bg"
+                app:layout_constraintEnd_toStartOf="@id/layoutnotify"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintEnd_toStartOf="@id/layoutnotify"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+
 
                 <ImageView
                     android:layout_width="100dp"
@@ -91,8 +80,7 @@
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
                     android:padding="8dp"
-                    android:src="@drawable/qrcode" />
-
+                    android:src="@drawable/qrcode"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,14 +88,15 @@
                     android:text="@string/qrcode"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layoutnotify"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/white_rectangle_bg"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -116,6 +105,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutqrcode"
                 app:layout_constraintTop_toTopOf="parent">
+
 
                 <ImageView
                     android:layout_width="100dp"
@@ -133,8 +123,42 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/aboutus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_bg"
+                app:layout_constraintEnd_toStartOf="@id/layoutnotify"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutqrcode">
+
+
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    android:src="@drawable/aboutus"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="About Us"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/notes"
@@ -146,18 +170,19 @@
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutqrcode"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutnotify">
+
+
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
+                    android:contentDescription="@string/notes"
                     android:padding="8dp"
-                    android:src="@drawable/notes" />
-
+                    android:src="@drawable/notes"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,11 +190,46 @@
                     android:text="@string/notes"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
+
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/aboutus"
+                android:id="@+id/profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/white_rectangle_bg"
+                app:layout_constraintEnd_toStartOf="@id/layoutnotify"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aboutus">
+
+
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/profile"
+                    android:padding="8dp"
+                    android:src="@drawable/profile"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="My Profile"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -178,66 +238,31 @@
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/layoutnotify"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutqrcode">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/aboutus" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/about_us"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_bg"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layoutqrcode"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/notes">
 
+
                 <ImageView
-                    android:id="@+id/profile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
+                    android:contentDescription="@string/notes"
                     android:padding="8dp"
-                    android:src="@drawable/profile" />
-
+                    android:src="@drawable/new_logout"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/profile"
+                    android:text="Log Out"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
+
             </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DBCCTRACE"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".AdminGenerateQR" />
         <activity android:name=".AdminCloudNotifyPage">
             <intent-filter>
@@ -41,7 +42,7 @@
         <activity android:name=".AboutUsActivity.AboutUs1" />
         <activity android:name=".AdminNotifyButtonPage" />
         <activity android:name=".AdminDeleteUser" />
-        <activity android:name=".AdminDashboardPage"/>
+        <activity android:name=".AdminDashboardPage" />
         <activity android:name=".ShowNotification" />
         <activity android:name=".UpdateUserProfile" />
         <activity android:name=".QRCodeScanner" />

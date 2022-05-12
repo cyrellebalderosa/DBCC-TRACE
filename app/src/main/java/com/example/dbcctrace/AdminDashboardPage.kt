@@ -2,7 +2,6 @@ package com.example.dbcctrace
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dbcctrace.AboutUsActivity.AboutUs
@@ -19,7 +18,7 @@ class AdminDashboardPage : AppCompatActivity() {
 
     //ActionBar
     private lateinit var actionBar: ActionBar
-    private lateinit var logout: TextView
+    //private lateinit var logout: TextView
 
     //FirebaseAuth
     private lateinit var firebaseAuth: FirebaseAuth
@@ -38,7 +37,7 @@ class AdminDashboardPage : AppCompatActivity() {
         checkUser()
 
 
-        logout = findViewById(R.id.adminlogout)
+        //logout = findViewById(R.id.adminlogout)
 
 
         binding.adminlogout.setOnClickListener {

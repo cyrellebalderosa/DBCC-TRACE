@@ -76,8 +76,9 @@
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:background="@drawable/edit"
-                    android:hint="    First Name">
+                    android:hint="First Name">
 
                 </EditText>
             </LinearLayout>
@@ -96,7 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/edit"
-                    android:hint="    Last Name " />
+                    android:gravity="center"
+                    android:hint="Last Name " />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/signaddress"
@@ -114,7 +116,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/edit"
-                    android:hint="    Address" />
+                    android:gravity="center"
+                    android:hint="Address" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/signcontact"
@@ -132,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/edit"
-                    android:hint="    Contact Number"/>
+                    android:gravity="center"
+                    android:hint="Contact Number"/>
 
 
             </LinearLayout>
@@ -154,7 +158,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
                     android:background="@drawable/edit"
-                    android:hint="    Age"></EditText>
+                    android:gravity="center"
+                    android:hint="Age"></EditText>
 
                 <EditText
                     android:id="@+id/genderEt"
@@ -162,7 +167,8 @@
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit"
-                    android:hint="    Gender"></EditText>
+                    android:gravity="center"
+                    android:hint="Gender"></EditText>
 
             </LinearLayout>
             <LinearLayout

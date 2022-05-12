@@ -35,7 +35,7 @@ class UserDashboardPage : AppCompatActivity() {
         checkUser()
 
 
-        binding.imagemenu.setOnClickListener {
+        binding.logout.setOnClickListener {
 
             clearToken(FirebaseAuth.getInstance().currentUser!!.uid)
             firebaseAuth.signOut()

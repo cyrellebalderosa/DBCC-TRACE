@@ -25,9 +25,7 @@ class RecordsMainPage : AppCompatActivity() {
             startActivity(Intent(this, QRcodeResult::class.java))
         }
 
-        binding.deleteuserbtn.setOnClickListener {
-            startActivity(Intent(this, AdminDeleteUser::class.java))
-        }
+
 
     }
 
