@@ -16,16 +16,12 @@ class EmailNotifyPage : AppCompatActivity() {
         binding = ActivityEmailNotifyPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.sendbtn.setOnClickListener {
 
             val email = binding.emailAddress.text.toString()
             val subject = binding.subject.text.toString()
             val message = binding.message.text.toString()
-
-
             val addresses = email.split(",".toRegex()).toTypedArray()
-
             val intent = Intent(Intent.ACTION_SENDTO).apply {
 
                 data = Uri.parse("mailto:")
