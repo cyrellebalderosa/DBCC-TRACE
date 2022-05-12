@@ -16,12 +16,10 @@ import com.example.dbcctrace.databinding.ActivitySmsNotifyBinding
 
 class SMSnotify : AppCompatActivity() {
 
-
     //viewBinding
     private lateinit var binding: ActivitySmsNotifyBinding
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+  override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySmsNotifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -31,7 +29,6 @@ class SMSnotify : AppCompatActivity() {
         {
             ActivityCompat.requestPermissions(this,
                     arrayOf(Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS),111)
-
         }
         else
             //recieveMsg()
@@ -43,21 +40,16 @@ class SMSnotify : AppCompatActivity() {
                         // split it between any commas, stripping whitespace afterwards
             //val numbers = userInput.split(",".toRegex()).toTypedArray()
 
-
-
             var sms = SmsManager.getDefault()
             sms.sendTextMessage(binding.phonenumET.text.toString(),"ME", binding.messageET.text.toString() , null, null)
 
         }
-
     }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode==111 && grantResults[0] ==  PackageManager.PERMISSION_GRANTED)
             recieveMsg()
     }
-
     private fun recieveMsg() {
        var br = object : BroadcastReceiver() {
            override fun onReceive(context: Context?, intent: Intent?) {
@@ -67,7 +59,6 @@ class SMSnotify : AppCompatActivity() {
 
                        binding.phonenumET.setText(sms.originatingAddress)
                        binding.messageET.setText(sms.displayMessageBody)
-
                    }
                }
            }
