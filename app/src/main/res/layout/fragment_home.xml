@@ -7,7 +7,6 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".NotesMainPage">
 
-
     <TextView
         android:id="@+id/tv1"
         android:layout_width="match_parent"
@@ -22,10 +21,6 @@
         android:fontFamily="cursive"
         />
 
-
-
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +33,6 @@
         tools:listitem="@layout/item_rv_notes"
        />
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,8 +44,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="@dimen/_20sdp"
         />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
